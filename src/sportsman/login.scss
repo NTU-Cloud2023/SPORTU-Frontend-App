@@ -5,34 +5,6 @@
     height: 100%;
 }
 
-.login-space1 {
-    padding-top: 23%;
-}
-
-.login-space2 {
-    padding-top: 5%;
-}
-
-.login-space3 {
-    padding-top: 5%;
-}
-
-.login-space4 {
-    padding-top: 4.5%;
-}
-
-.login-space5 {
-    padding-top: 4%;
-}
-
-.login-space6 {
-    padding-top: 6%;
-}
-
-.login-space7 {
-    padding-top: 4%;
-}
-
 .login-title {
     font-size: 70px;
     font-weight: bold;
@@ -50,9 +22,8 @@
 .login-email {
     display: block;
     margin: auto;
-    padding-left: 3.5%;
     width: 60%;
-    height: 5.5%;
+    height: 6%;
     font-size: 16px;
     color: $normal-text-color;
     background-color: transparent;
@@ -68,9 +39,8 @@
 .login-password {
     display: block;
     margin: auto;
-    padding-left: 3.5%;
     width: 60%;
-    height: 5.5%;
+    height: 6%;
     font-size: 16px;
     color: $normal-text-color;
     background-color: transparent;
@@ -86,7 +56,7 @@
 .login-login {
     display: block;
     margin: auto;
-    width: 65%;
+    width: 60%;
     height: 6%;
     font-size: 16px;
     font-weight: bold;
@@ -94,16 +64,12 @@
 }
 
 .login-email-error {
-    margin-top: 2%;
-    margin-bottom: 2%;
     margin-left: 20%;
     font-size: 14px;
     color: $error-color;
 }
 
 .login-password-error {
-    margin-top: 2%;
-    margin-bottom: 2%;
     margin-left: 20%;
     font-size: 14px;
     color: $error-color;

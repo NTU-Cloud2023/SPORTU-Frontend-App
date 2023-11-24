@@ -48,32 +48,32 @@ const Login = (props: LoginProps) => {
 
     return (
         <div className="login">
-            <div className="login-space1"/>
+            <div className="pt-20"/>
             <div className="login-title">SPORTU</div>
-            <div className="login-space2"/>
+            <div className="pt-4"/>
             <img
                 className="login-image"
                 src={require('../assets/images/runner.jpg')}
                 alt="一起運動"
             />
-            <div className="login-space3"/>
+            <div className="pt-6"/>
             <input
-                className="login-email"
+                className="login-email pl-3"
                 type="text"
                 id="email"
                 placeholder="電子信箱"
             />
             {
-                isEmailValid ? <div className="login-space4"/> : <div className="login-email-error">信箱不存在</div>
+                isEmailValid ? <div className="pt-4"/> : <div className="login-email-error py-1.5">信箱不存在</div>
             }
             <input
-                className="login-password"
+                className="login-password pl-3"
                 type="password"
                 id="password"
                 placeholder="密碼"
             />
             {
-                isPasswordValid ? <div className="login-space5"/> : <div className="login-password-error">密碼錯誤</div>
+                isPasswordValid ? <div className="pt-4"/> : <div className="login-password-error py-1.5">密碼錯誤</div>
             }
             <button
                 className="login-login"
@@ -82,7 +82,7 @@ const Login = (props: LoginProps) => {
             >
                 登入
             </button>
-            <div className="login-space6"/>
+            <div className="pt-4"/>
             <div className="login-register-text">
                 <span>
                     還沒有帳號?&ensp;
@@ -94,7 +94,7 @@ const Login = (props: LoginProps) => {
                     立即註冊
                 </span>
             </div>
-            <div className="login-space7"/>
+            <div className="pt-4"/>
             <div
                 className="login-court-provider"
                 onClick={props.handleCourtProviderLogin}
