@@ -1,3 +1,5 @@
+@import "./_sportsman.scss";
+
 .login {
     width: 100%;
     height: 100%;
@@ -36,7 +38,7 @@
     font-weight: bold;
     font-style: italic;
     text-align: center;
-    color: #8cea00;
+    color: $primary-color;
 }
 
 .login-image {
@@ -52,10 +54,15 @@
     width: 60%;
     height: 5.5%;
     font-size: 16px;
-    color: #d0d0d0;
-    background: #272727;
-    border: 1px solid #6c6c6c;
+    color: $normal-text-color;
+    background-color: transparent;
+    border: 1px solid $input-border-color;
     border-radius: 16px;
+
+    &::placeholder {
+        font-size: 14px;
+        color: $input-placeholder-color;
+    }
 }
 
 .login-password {
@@ -65,15 +72,15 @@
     width: 60%;
     height: 5.5%;
     font-size: 16px;
-    color: #d0d0d0;
-    background: #272727;
-    border: 1px solid #6c6c6c;
+    color: $normal-text-color;
+    background-color: transparent;
+    border: 1px solid $input-border-color;
     border-radius: 16px;
-}
 
-::placeholder {
-    font-size: 14px;
-    color: #9d9d9d;
+    &::placeholder {
+        font-size: 14px;
+        color: $input-placeholder-color;
+    }
 }
 
 .login-login {
@@ -83,8 +90,7 @@
     height: 6%;
     font-size: 16px;
     font-weight: bold;
-    color: black;
-    background: #8cea00;
+    background-color: $primary-color;
 }
 
 .login-email-error {
@@ -92,7 +98,7 @@
     margin-bottom: 2%;
     margin-left: 20%;
     font-size: 14px;
-    color: red;
+    color: $error-color;
 }
 
 .login-password-error {
@@ -100,21 +106,21 @@
     margin-bottom: 2%;
     margin-left: 20%;
     font-size: 14px;
-    color: red;
+    color: $error-color;
 }
 
 .login-register-text {
     font-size: 16px;
     text-align: center;
-    color: #d0d0d0;
+    color: $normal-text-color;
 }
 
 .login-register-link {
-    color: #82d900;
+    color: $secondary-color;
 }
 
 .login-court-provider {
     font-size: 16px;
     text-align: center;
-    color: #82d900;
+    color: $secondary-color;
 }

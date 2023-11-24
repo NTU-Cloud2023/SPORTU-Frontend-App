@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BACKEND } from '../backend';
 import axios from 'axios';
-import './Login.css';
+import './login.scss';
 
 type LoginProps = {
     handleLogin: () => void;

@@ -4,7 +4,7 @@ import CourtProviderRoot from './court_provider/CourtProviderRoot';
 import Container from './sportsman/Container';
 import Register from './sportsman/Register';
 import Login from './sportsman/Login';
-import './root.css';
+import './root.scss';
 
 const Root = () => {
     const [page, setPage] = useState(pages.SPORTSMAN_LOGIN);
