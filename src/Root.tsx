@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as pages from './pages';
-import CourtProviderRoot from './court_provider/CourtProviderRoot';
+import CourtProviderRoot from './court_provider/Root';
 import Container from './sportsman/Container';
 import Register from './sportsman/Register';
 import Login from './sportsman/Login';

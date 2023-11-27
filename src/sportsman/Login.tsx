@@ -82,7 +82,7 @@ const Login = (props: LoginProps) => {
             >
                 登入
             </button>
-            <div className="pt-4"/>
+            <div className="pt-6"/>
             <div className="login-register-text">
                 <span>
                     還沒有帳號?&ensp;
@@ -94,7 +94,7 @@ const Login = (props: LoginProps) => {
                     立即註冊
                 </span>
             </div>
-            <div className="pt-4"/>
+            <div className="pt-2"/>
             <div
                 className="login-court-provider"
                 onClick={props.handleCourtProviderLogin}

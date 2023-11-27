@@ -1,5 +1,5 @@
 
-const CourtProviderRoot = () => {
+const Root = () => {
     return (
         <div>
             Court Provider Root
@@ -7,4 +7,4 @@ const CourtProviderRoot = () => {
     );
 };
 
-export default CourtProviderRoot;
+export default Root;
