@@ -22,12 +22,12 @@ const Root = () => {
     };
 
     return (
-        <div className="root">
+        <div>
             {
                 page === pages.COURT_PROVIDER_ROOT ?
-                    <div className="court-provider"> <CourtProviderRoot/> </div>
+                    <div className="root-court-provider"> <CourtProviderRoot/> </div>
                     :
-                    <div className="sportsman">
+                    <div className="root-sportsman">
                         {
                             page === pages.SPORTSMAN_CONTAINER ? <Container/> : <div/>
                         }
