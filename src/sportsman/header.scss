@@ -18,18 +18,12 @@
     float: right;
 }
 
-.header-map-wrapper {
-    position: relative;
+.header-map {
     width: 40px;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     float: right;
-}
-
-.header-map {
-    position: absolute;
-    margin: 0;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
     color: $sportsman-secondary-color;
 }

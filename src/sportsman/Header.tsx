@@ -21,13 +21,11 @@ const Header = (props: HeaderProps) => {
                 alt="通知"
                 onClick={props.handleShowNotifications}
             />
-            <div className="header-map-wrapper">
-                <div
-                    className="header-map"
-                    onClick={props.handleShowMap}
-                >
-                    地圖
-                </div>
+            <div
+                className="header-map"
+                onClick={props.handleShowMap}
+            >
+                地圖
             </div>
         </div>
     );
