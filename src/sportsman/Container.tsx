@@ -65,7 +65,7 @@ const Container = (props: ContainerProps) => {
     };
 
     return (
-        <div className="container">
+        <div>
             <div className="container-header">
                 <Header
                     handleShowMenu={handleShowMenu}
