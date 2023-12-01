@@ -13,7 +13,7 @@ const Login = (props: LoginProps) => {
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [isPasswordValid, setIsPasswordValid] = useState(true);
 
-    const handleLoginClicked = () => {
+    const handleLogin = () => {
         let email = '';
         let password = '';
 
@@ -48,15 +48,15 @@ const Login = (props: LoginProps) => {
 
     return (
         <div className="login">
-            <div className="pt-20"/>
+            <div className="login-space1"/>
             <div className="login-title">SPORTU</div>
-            <div className="pt-4"/>
+            <div className="login-space2"/>
             <img
                 className="login-image"
                 src={require('../assets/images/runner.jpg')}
                 alt="一起運動"
             />
-            <div className="pt-6"/>
+            <div className="login-space3"/>
             <input
                 className="login-email pl-3"
                 type="text"
@@ -64,7 +64,7 @@ const Login = (props: LoginProps) => {
                 placeholder="電子信箱"
             />
             {
-                isEmailValid ? <div className="pt-4"/> : <div className="login-email-error py-1.5">信箱不存在</div>
+                isEmailValid ? <div className="login-space4"/> : <div className="login-email-error py-1.5">信箱不存在</div>
             }
             <input
                 className="login-password pl-3"
@@ -73,16 +73,16 @@ const Login = (props: LoginProps) => {
                 placeholder="密碼"
             />
             {
-                isPasswordValid ? <div className="pt-4"/> : <div className="login-password-error py-1.5">密碼錯誤</div>
+                isPasswordValid ? <div className="login-space5"/> : <div className="login-password-error py-1.5">密碼錯誤</div>
             }
             <button
                 className="login-login"
                 type="button"
-                onClick={handleLoginClicked}
+                onClick={handleLogin}
             >
                 登入
             </button>
-            <div className="pt-6"/>
+            <div className="login-space6"/>
             <div className="login-register-text">
                 <span>
                     還沒有帳號?&ensp;
@@ -94,7 +94,7 @@ const Login = (props: LoginProps) => {
                     立即註冊
                 </span>
             </div>
-            <div className="pt-2"/>
+            <div className="login-space7"/>
             <div
                 className="login-court-provider"
                 onClick={props.handleCourtProviderLogin}
