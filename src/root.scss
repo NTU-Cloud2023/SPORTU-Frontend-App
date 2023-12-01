@@ -1,4 +1,5 @@
 @import "./_colors.scss";
+@import "./_sizes.scss";
 
 .root-court-provider {
     width: 100vw;
@@ -12,10 +13,10 @@
     background-color: $sportsman-background-color;
 }
 
-@media (min-width: 768px) {
+@media (min-width: $pc-min-width) {
     .root-court-provider,
     .root-sportsman {
         margin: auto;
-        width: 285px;
+        width: $pc-display-size;
     }
 }
