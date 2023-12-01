@@ -17,8 +17,8 @@ const Login = (props: LoginProps) => {
         let email = '';
         let password = '';
 
-        const emailElement = document.getElementById('email') as HTMLInputElement;
-        const passwordElement = document.getElementById('password') as HTMLInputElement;
+        const emailElement = document.getElementById('login-email') as HTMLInputElement;
+        const passwordElement = document.getElementById('login-password') as HTMLInputElement;
 
         if (emailElement) {
             email = emailElement.value;
@@ -60,7 +60,7 @@ const Login = (props: LoginProps) => {
             <input
                 className="login-email"
                 type="text"
-                id="email"
+                id="login-email"
                 placeholder="電子信箱"
             />
             {
@@ -69,7 +69,7 @@ const Login = (props: LoginProps) => {
             <input
                 className="login-password"
                 type="password"
-                id="password"
+                id="login-password"
                 placeholder="密碼"
             />
             {
