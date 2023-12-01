@@ -3,7 +3,7 @@ import * as pages from '../pages';
 import Header from './Header';
 import Body from './Body';
 import Menu from './Menu';
-import Notifications from './Notifications';
+import Notification from './Notification';
 import './container.scss';
 
 type ContainerProps = {
@@ -94,8 +94,8 @@ const Container = (props: ContainerProps) => {
             }
             {
                 shouldShowNotifications ?
-                    <div className="container-notifications">
-                        <Notifications handleCloseNotifications={handleCloseNotifications}/>
+                    <div className="container-notification">
+                        <Notification handleCloseNotifications={handleCloseNotifications}/>
                     </div>
                     :
                     <div/>

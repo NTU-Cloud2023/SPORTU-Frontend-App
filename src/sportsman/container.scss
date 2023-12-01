@@ -27,14 +27,14 @@
     border-right: 1.5px solid $sportsman-menu-border-color;
 }
 
-.container-notifications {
+.container-notification {
     position: absolute;
     top: 0;
     right: 0;
     width: 90%;
     height: 100%;
     background-color: $sportsman-background-color;
-    border-left: 1.5px solid $sportsman-notifications-border-color;
+    border-left: 1.5px solid $sportsman-notification-border-color;
     overflow: auto;
 }
 
@@ -44,7 +44,7 @@
         width: calc($pc-display-size * 0.9);
     }
 
-    .container-notifications {
+    .container-notification {
         right: calc(50% - $pc-display-size / 2);
         width: calc($pc-display-size * 0.9);
     }
