@@ -58,22 +58,22 @@ const Login = (props: LoginProps) => {
             />
             <div className="login-space3"/>
             <input
-                className="login-email pl-3"
+                className="login-email"
                 type="text"
                 id="email"
                 placeholder="電子信箱"
             />
             {
-                isEmailValid ? <div className="login-space4"/> : <div className="login-email-error py-1.5">信箱不存在</div>
+                isEmailValid ? <div className="login-space4"/> : <div className="login-email-error">信箱不存在</div>
             }
             <input
-                className="login-password pl-3"
+                className="login-password"
                 type="password"
                 id="password"
                 placeholder="密碼"
             />
             {
-                isPasswordValid ? <div className="login-space5"/> : <div className="login-password-error py-1.5">密碼錯誤</div>
+                isPasswordValid ? <div className="login-space5"/> : <div className="login-password-error">密碼錯誤</div>
             }
             <button
                 className="login-login"
