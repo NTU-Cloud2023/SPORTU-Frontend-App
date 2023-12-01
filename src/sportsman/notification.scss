@@ -1,5 +1,5 @@
-@import "../_colors.scss";
-@import "../_sizes.scss";
+@import "./_colors.scss";
+@import "./_sizes.scss";
 
 .notification {
     width: 100%;
@@ -22,6 +22,6 @@
     padding-left: 5%;
     padding-top: 10px;
     padding-bottom: 10px;
-    color: $sportsman-notification-item-text-color;
-    border-bottom: 1px dashed $sportsman-notification-item-border-color;
+    color: $notification-item-text-color;
+    border-bottom: 1px dashed $notification-item-border-color;
 }

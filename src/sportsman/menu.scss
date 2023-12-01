@@ -1,13 +1,13 @@
-@import "../_colors.scss";
-@import "../_sizes.scss";
+@import "./_colors.scss";
+@import "./_sizes.scss";
 
 $item-width: 100%;
 $item-height: 6%;
 $item-font-size: 20px;
-$item-color: $sportsman-secondary-color;
+$item-color: $secondary-color;
 $item-border-width: 1.5px;
 $item-border-style: solid;
-$item-border-color: $sportsman-secondary-color;
+$item-border-color: $secondary-color;
 
 .menu {
     width: 100%;
