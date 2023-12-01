@@ -1,0 +1,35 @@
+@import "../colors.scss";
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.header-menu {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    height: 100%;
+}
+
+.header-notification {
+    height: 100%;
+    float: right;
+}
+
+.header-map-wrapper {
+    position: relative;
+    width: 40px;
+    height: 100%;
+    float: right;
+}
+
+.header-map {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: $sportsman-secondary-color;
+}

@@ -13,6 +13,10 @@ const Root = () => {
         setPage(pages.SPORTSMAN_CONTAINER);
     };
 
+    const handleLogout = () => {
+        setPage(pages.SPORTSMAN_LOGIN);
+    };
+
     const handleRegister = () => {
         setPage(pages.SPORTSMAN_REGISTER);
     };
@@ -29,7 +33,10 @@ const Root = () => {
                     :
                     <div className="root-sportsman">
                         {
-                            page === pages.SPORTSMAN_CONTAINER ? <Container/> : <div/>
+                            page === pages.SPORTSMAN_CONTAINER ?
+                                <Container handleLogout={handleLogout}/>
+                                :
+                                <div/>
                         }
                         {
                             page === pages.SPORTSMAN_REGISTER ? <Register/> : <div/>

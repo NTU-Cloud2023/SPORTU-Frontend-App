@@ -1,0 +1,42 @@
+@import "../colors.scss";
+
+$item-width: 100%;
+$item-height: 6%;
+$item-font-size: 20px;
+$item-color: $sportsman-secondary-color;
+$item-border-width: 1.5px;
+$item-border-style: solid;
+$item-border-color: $sportsman-secondary-color;
+
+.menu {
+    width: 100%;
+    height: 100%;
+}
+
+.menu-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 60px;
+}
+
+.menu-space1 {
+    width: 100%;
+    height: 16%;
+    border-bottom: $item-border-width $item-border-style $item-border-color;
+}
+
+.menu-show-homepage,
+.menu-reserve-now,
+.menu-reservation-records,
+.menu-court-information,
+.menu-sign-in,
+.menu-log-out {
+    width: $item-width;
+    height: $item-height;
+    font-size: $item-font-size;
+    color: $item-color;
+    border-left: $item-border-width $item-border-style $item-border-color;
+    border-right: $item-border-width $item-border-style $item-border-color;
+    border-bottom: $item-border-width $item-border-style $item-border-color;
+}

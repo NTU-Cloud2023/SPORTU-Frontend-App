@@ -1,0 +1,26 @@
+@import "../_colors.scss";
+
+.notifications {
+    width: 100%;
+    height: 100%;
+}
+
+.notifications-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 60px;
+}
+
+.notifications-space1 {
+    width: 100%;
+    height: 13%;
+}
+
+.notifications-item {
+    padding-left: 5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: $sportsman-notification-text-color;
+    border-bottom: 1px dashed $sportsman-notification-item-border-color;
+}
