@@ -5,12 +5,14 @@
     width: 100vw;
     height: 100vh;
     background-color: $court-provider-background-color;
+    overflow: auto;
 }
 
 .root-sportsman {
     width: 100vw;
     height: 100vh;
     background-color: $sportsman-background-color;
+    overflow: auto;
 }
 
 @media (min-width: $pc-min-width) {
