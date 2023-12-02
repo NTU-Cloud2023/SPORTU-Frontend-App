@@ -1,16 +1,16 @@
 @import "../_background_colors.scss";
 @import "./_colors.scss";
 @import "../_sizes.scss";
+@import "./_sizes.scss";
 
 .container-header {
     width: 100vw;
-    height: 8vh;
+    height: $header-height;
     border-bottom: 1px solid $secondary-color;
 }
 
 .container-body {
     width: 100vw;
-    height: 92vh;
 }
 
 .container-menu {
