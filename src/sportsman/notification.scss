@@ -1,5 +1,6 @@
 @import "./_colors.scss";
 @import "./_sizes.scss";
+@import "../_sizes.scss";
 
 .notification {
     width: 100%;
@@ -14,13 +15,19 @@
 }
 
 .notification-space1 {
-    height: 13%;
+    height: 12%;
 }
 
 .notification-item {
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin: 0 12px 0 12px;
+    padding: 10px 0 10px 0;
+    font-size: 16px;
     color: $notification-item-text-color;
     border-bottom: 1px dashed $notification-item-border-color;
+}
+
+@media (min-width: $pc-min-width) {
+    .notification-item {
+        font-size: 12px;
+    }
 }
