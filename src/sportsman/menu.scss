@@ -18,11 +18,10 @@ $item-border-color: $secondary-color;
     position: absolute;
     top: 0;
     right: 0;
-    height: $header-height;
+    height: $menu-close-height;
 }
 
 .menu-space1 {
-    width: 100%;
     height: 16%;
     border-bottom: $item-border-width $item-border-style $item-border-color;
 }
