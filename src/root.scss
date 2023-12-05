@@ -1,0 +1,21 @@
+@import "./_colors.scss";
+
+.root-court-provider {
+    width: 100vw;
+    height: 100vh;
+    background-color: $court-provider-background-color;
+}
+
+.root-sportsman {
+    width: 100vw;
+    height: 100vh;
+    background-color: $sportsman-background-color;
+}
+
+@media (min-width: 768px) {
+    .root-court-provider,
+    .root-sportsman {
+        margin: auto;
+        width: 285px;
+    }
+}
