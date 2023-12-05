@@ -3,19 +3,19 @@ import {
     Routes,
     Route
 } from 'react-router-dom';
-import Login from './Login';
-import Root from '../Root';
-import Register from './Register';
-import RegisterSuccess from './RegisterSuccess';
-import Home from './Home';
-import Book from './Book';
-import FieldList from './FieldList';
-import FieldMap from './FieldMap';
-import BookFieldMap from './Book/FieldMap';
-import BookFieldList from './Book/FieldList';
-import CheckIn from './CheckIn';
-import Appointments from './Appointments/Index';
-import FieldDetails from './FieldDetails/Index';
+import Login from './Pages/Login';
+import Root from './Root';
+import Register from './Pages/Register';
+import RegisterSuccess from './Pages/RegisterSuccess';
+import Home from './Pages/Home';
+import Book from './Pages/Book';
+import FieldList from './Pages/FieldList';
+import FieldMap from './Pages/FieldMap';
+import BookFieldMap from './Pages/Book/FieldMap';
+import BookFieldList from './Pages/Book/FieldList';
+import CheckIn from './Pages/CheckIn';
+import Appointments from './Pages/Appointments/Index';
+import FieldDetails from './Pages/FieldDetails/Index';
 
 const Router = () => {
     return (
