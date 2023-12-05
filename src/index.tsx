@@ -1,15 +1,15 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 import './index.css';
-import Root from './Root';
 import reportWebVitals from './reportWebVitals';
+import Router from './Pages/Router';
 
 const container = document.getElementById('app');
 const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
-        <Root/>
+        <Router />
     </React.StrictMode>
 );
 
