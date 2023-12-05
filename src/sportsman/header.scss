@@ -1,0 +1,29 @@
+@import "./_colors.scss";
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.header-menu {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    height: 100%;
+}
+
+.header-notification {
+    height: 100%;
+    float: right;
+}
+
+.header-map {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    color: $secondary-color;
+}

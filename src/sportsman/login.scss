@@ -1,4 +1,4 @@
-@import "../_colors.scss";
+@import "./_colors.scss";
 
 .login {
     width: 100%;
@@ -38,7 +38,7 @@
     font-weight: bold;
     font-style: italic;
     text-align: center;
-    color: $sportsman-primary-color;
+    color: $primary-color;
 }
 
 .login-image {
@@ -54,14 +54,14 @@
     width: 60%;
     height: 6%;
     font-size: 16px;
-    color: $sportsman-normal-text-color;
+    color: $normal-text-color;
     background-color: transparent;
-    border: 1px solid $sportsman-input-border-color;
+    border: 1px solid $input-border-color;
     border-radius: 16px;
 
     &::placeholder {
         font-size: 14px;
-        color: $sportsman-input-placeholder-color;
+        color: $input-placeholder-color;
     }
 }
 
@@ -72,14 +72,14 @@
     width: 60%;
     height: 6%;
     font-size: 16px;
-    color: $sportsman-normal-text-color;
+    color: $normal-text-color;
     background-color: transparent;
-    border: 1px solid $sportsman-input-border-color;
+    border: 1px solid $input-border-color;
     border-radius: 16px;
 
     &::placeholder {
         font-size: 14px;
-        color: $sportsman-input-placeholder-color;
+        color: $input-placeholder-color;
     }
 }
 
@@ -90,7 +90,7 @@
     height: 6%;
     font-size: 16px;
     font-weight: bold;
-    background-color: $sportsman-primary-color;
+    background-color: $primary-color;
 }
 
 .login-email-error {
@@ -112,15 +112,15 @@
 .login-register-text {
     font-size: 16px;
     text-align: center;
-    color: $sportsman-normal-text-color;
+    color: $normal-text-color;
 }
 
 .login-register-link {
-    color: $sportsman-secondary-color;
+    color: $secondary-color;
 }
 
 .login-court-provider {
     font-size: 16px;
     text-align: center;
-    color: $sportsman-secondary-color;
+    color: $secondary-color;
 }
