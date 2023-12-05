@@ -1,0 +1,45 @@
+// ======================================
+// BASIC COLORS
+// ======================================
+$primary: #6de010;
+$secondary: #54aa0f;
+$content: #e2e2e2;
+$input: #c3c3c3;
+$dark: #1d1e20;
+$info: #009dff;
+$danger: #aa2929;
+$warning: #f7ff00;
+$disabled: #707070;
+
+// ======================================
+// _sizes.scss
+// ======================================
+$pc-min-width: 1025px;
+$pc-display-size: 285px;
+
+// ======================================
+// _background_colors.scss
+// ======================================
+$sportsman-background-color: $dark;
+$court-provider-background-color: #c4e1ff;
+
+// ======================================
+// sportsman\_colors.scss
+// ======================================
+$primary-color: $primary;
+$secondary-color: $secondary;
+$normal-text-color: $content;
+$notification-item-text-color: #d0d0d0;
+$notification-item-border-color: #e0e0e0;
+$input-placeholder-color: $input;
+$input-border-color: $input;
+$menu-border-color: #6c6c6c;
+$notification-border-color: #6c6c6c;
+$error-color: $danger;
+
+// ======================================
+// sportsman\_sizes.scss
+// ======================================
+$header-height: 8vh;
+$menu-close-height: 8vh;
+$notification-close-height: 8vh;

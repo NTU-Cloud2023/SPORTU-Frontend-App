@@ -1,5 +1,4 @@
-@import "./_colors.scss";
-@import "./_sizes.scss";
+@import "../variables";
 
 $item-width: 100%;
 $item-height: 6%;
@@ -36,7 +35,7 @@ $item-border-color: $secondary-color;
     height: $item-height;
     font-size: $item-font-size;
     color: $item-color;
-    border-left: $item-border-width $item-border-style $item-border-color;
     border-right: $item-border-width $item-border-style $item-border-color;
     border-bottom: $item-border-width $item-border-style $item-border-color;
+    border-left: $item-border-width $item-border-style $item-border-color;
 }

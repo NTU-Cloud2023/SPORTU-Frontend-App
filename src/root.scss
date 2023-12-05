@@ -1,18 +1,17 @@
-@import "./_background_colors.scss";
-@import "./_sizes.scss";
+@import "variables";
 
 .root-court-provider {
+    overflow: auto;
     width: 100vw;
     height: 100vh;
     background-color: $court-provider-background-color;
-    overflow: auto;
 }
 
 .root-sportsman {
+    overflow: auto;
     width: 100vw;
     height: 100vh;
     background-color: $sportsman-background-color;
-    overflow: auto;
 }
 
 @media (min-width: $pc-min-width) {

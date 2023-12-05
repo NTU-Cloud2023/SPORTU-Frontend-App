@@ -1,4 +1,4 @@
-@import "./_colors.scss";
+@import "../variables";
 
 .header {
     position: relative;
@@ -14,16 +14,16 @@
 }
 
 .header-notification {
-    height: 100%;
     float: right;
+    height: 100%;
 }
 
 .header-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
     width: 40px;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    float: right;
     color: $secondary-color;
 }
