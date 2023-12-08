@@ -1,0 +1,37 @@
+@import "../../variables";
+
+.header {
+    width: 100%;
+    height: $header-height;
+    background-color: $sportsman-background-color;
+    border-bottom: 2px solid $secondary-color;
+}
+
+.header-menu-bar {
+    float: left;
+    margin-left: 6%;
+    height: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bell {
+    float: right;
+    margin-right: 6%;
+    height: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-map {
+    float: right;
+    margin-right: 6%;
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $secondary-color;
+}

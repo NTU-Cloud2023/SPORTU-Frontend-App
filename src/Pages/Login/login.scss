@@ -1,0 +1,106 @@
+@import "../../variables";
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/images/sport-man-bg.png");
+}
+
+.login-space1 {
+    height: 10.5%;
+}
+
+.login-space2 {
+    height: 30.5%;
+}
+
+.login-space3 {
+    height: 2%;
+}
+
+.login-space4 {
+    height: 2%;
+}
+
+.login-space5 {
+    height: 3%;
+}
+
+.login-space6 {
+    height: 1.5%;
+}
+
+.login-logo {
+    display: block;
+    margin: auto;
+    width: 60%;
+}
+
+.login-email {
+    display: block;
+    margin: auto;
+    padding-left: 12px;
+    width: 60%;
+    height: 6%;
+    font-size: 16px;
+    color: $normal-text-color;
+    background-color: $sportsman-background-color;
+    border: 1px solid $input-border-color;
+    border-radius: 16px;
+
+    &::placeholder {
+        font-size: 14px;
+        color: $input-placeholder-color;
+    }
+}
+
+.login-password {
+    display: block;
+    margin: auto;
+    padding-left: 12px;
+    width: 60%;
+    height: 6%;
+    font-size: 16px;
+    color: $normal-text-color;
+    background-color: $sportsman-background-color;
+    border: 1px solid $input-border-color;
+    border-radius: 16px;
+
+    &::placeholder {
+        font-size: 14px;
+        color: $input-placeholder-color;
+    }
+}
+
+.login-login {
+    display: block;
+    margin: auto;
+    width: 60%;
+    height: 6%;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: $primary-color;
+}
+
+.login-register-text {
+    font-size: 16px;
+    text-align: center;
+    color: $normal-text-color;
+}
+
+.login-register-link {
+    color: $secondary-color;
+}
+
+.login-court-provider-login {
+    font-size: 16px;
+    text-align: center;
+    color: $secondary-color;
+}
+
+@media (min-width: $pc-min-width) {
+    .login {
+        margin: auto;
+        width: $pc-display-size;
+    }
+}

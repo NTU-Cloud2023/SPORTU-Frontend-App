@@ -4,7 +4,6 @@ import {
     Route
 } from 'react-router-dom';
 import Login from './Pages/Login';
-import Root from './Root';
 import Register from './Pages/Register';
 import RegisterSuccess from './Pages/RegisterSuccess';
 import Home from './Pages/Home';
@@ -23,7 +22,7 @@ const Router = () => {
             <Routes>
                 <Route
                     path="/"
-                    element={<Root />}
+                    element={<Login />}
                 />
                 <Route
                     path="/login"
