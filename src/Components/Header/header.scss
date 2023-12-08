@@ -2,15 +2,13 @@
 
 .header {
     width: 100%;
-    height: $header-height;
-    background-color: $sportsman-background-color;
-    border-bottom: 2px solid $secondary-color;
+    height: 100%;
 }
 
 .header-menu-bar {
     float: left;
     margin-left: 6%;
-    height: $header-height;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +17,7 @@
 .header-bell {
     float: right;
     margin-right: 6%;
-    height: $header-height;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

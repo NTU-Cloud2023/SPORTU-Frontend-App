@@ -9,9 +9,43 @@
     height: 100vh;
 }
 
+.home-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    height: 100vh;
+    background-color: $sportsman-background-color;
+}
+
+.home-notification {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90vw;
+    height: 100vh;
+    background-color: $sportsman-background-color;
+}
+
+.home-header {
+    width: 100vw;
+    height: $header-height;
+    background-color: $sportsman-background-color;
+    border-bottom: 2px solid $secondary-color;
+}
+
 @media (min-width: $pc-min-width) {
     .home {
         left: calc(50vw - $pc-display-size / 2);
+        width: $pc-display-size;
+    }
+
+    .home-menu,
+    .home-notification {
+        width: calc(0.9 * $pc-display-size);
+    }
+
+    .home-header {
         width: $pc-display-size;
     }
 }
