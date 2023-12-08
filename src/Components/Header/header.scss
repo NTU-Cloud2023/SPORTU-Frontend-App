@@ -1,8 +1,10 @@
 @import "../../variables";
 
 .header {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: $header-height;
+    background-color: $sportsman-background-color;
+    border-bottom: 2px solid $secondary-color;
 }
 
 .header-menu-bar {
@@ -32,4 +34,10 @@
     align-items: center;
     justify-content: center;
     color: $secondary-color;
+}
+
+@media (min-width: $pc-min-width) {
+    .header {
+        width: $pc-display-size;
+    }
 }

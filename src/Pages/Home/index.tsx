@@ -32,30 +32,21 @@ const Home = () => {
         <div className="home">
             {
                 shouldShowMenu ?
-                    <div className="home-menu">
-                        <Menu
-                            handleCloseMenu={handleCloseMenu} 
-                        />
-                    </div>
+                    <Menu handleCloseMenu={handleCloseMenu} />
                     :
                     <div/>
             }
             {
                 shouldShowNotifications ?
-                    <div className="home-notification">
-                        <Notification
-                            handleCloseNotifications={handleCloseNotifications}
-                        />
-                    </div>
+                    <Notification handleCloseNotifications={handleCloseNotifications} />
                     :
                     <div/>
             }
-            <div className="home-header">
-                <Header
-                    handleShowMenu={handleShowMenu}
-                    handleShowNotifications={handleShowNotifications}
-                />
-            </div>
+
+            <Header
+                handleShowMenu={handleShowMenu}
+                handleShowNotifications={handleShowNotifications}
+            />
             <Book />
             <FieldList />
         </div>
