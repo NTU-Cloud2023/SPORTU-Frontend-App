@@ -2,6 +2,10 @@ import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './login.scss';
 
 const Login = () => {
+    const handleLogin = () => {
+        window.location.href = 'http://localhost:3000/home';
+    };
+
     return (
         <div className="login">
             <div className="login-space1" />
@@ -24,7 +28,7 @@ const Login = () => {
             <button
                 className="login-log-in"
                 type="button"
-                onClick={() => {}}
+                onClick={handleLogin}
             >
                 登入
             </button>
