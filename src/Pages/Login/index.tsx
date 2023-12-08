@@ -1,14 +1,13 @@
+import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './login.scss';
 
 const Login = () => {
     return (
         <div className="login">
             <div className="login-space1" />
-            <img
-                className="login-logo"
-                src={require('../../assets/images/logo.png')}
-                alt="SPORTU"
-            />
+            <div className="login-logo">
+                <Logo />
+            </div>
             <div className="login-space2" />
             <input
                 className="login-email"
