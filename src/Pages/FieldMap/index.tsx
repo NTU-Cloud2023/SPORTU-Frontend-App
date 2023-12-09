@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const FieldMap = () => {
-    return (<div>FieldMap</div>);
+    return (
+        <Pager page="field-map" />
+    );
 };
 
 export default FieldMap;

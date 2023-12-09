@@ -4,7 +4,6 @@ import {
     Route
 } from 'react-router-dom';
 import Login from './Pages/Login';
-import Root from './Root';
 import Register from './Pages/Register';
 import RegisterSuccess from './Pages/RegisterSuccess';
 import Home from './Pages/Home';
@@ -14,8 +13,8 @@ import FieldMap from './Pages/FieldMap';
 import BookFieldMap from './Pages/Book/FieldMap';
 import BookFieldList from './Pages/Book/FieldList';
 import CheckIn from './Pages/CheckIn';
-import Appointments from './Pages/Appointments/Index';
-import FieldDetails from './Pages/FieldDetails/Index';
+import Appointments from './Pages/Appointments';
+import FieldDetails from './Pages/FieldDetails';
 
 const Router = () => {
     return (
@@ -23,7 +22,7 @@ const Router = () => {
             <Routes>
                 <Route
                     path="/"
-                    element={<Root />}
+                    element={<Login />}
                 />
                 <Route
                     path="/login"

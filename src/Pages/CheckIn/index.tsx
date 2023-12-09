@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const CheckIn = () => {
-    return (<div>CheckIn</div>);
+    return (
+        <Pager page="check-in" />
+    );
 };
 
 export default CheckIn;

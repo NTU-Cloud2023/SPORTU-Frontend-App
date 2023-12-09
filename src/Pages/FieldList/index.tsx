@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const FieldList = () => {
-    return (<div>FieldList</div>);
+    return (
+        <Pager page="field-list" />
+    );
 };
 
 export default FieldList;

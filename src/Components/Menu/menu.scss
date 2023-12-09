@@ -1,0 +1,55 @@
+@import "../../variables";
+
+$item-width: 100%;
+$item-height: 6%;
+$item-font-size: 20px;
+$item-color: $secondary-color;
+$item-border-width: 1.5px;
+$item-border-style: solid;
+$item-border-color: $secondary-color;
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    height: 100vh;
+    background-color: $sportsman-background-color;
+}
+
+.menu-cancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $menu-cancel-height;
+    height: $menu-cancel-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-space1 {
+    height: 16%;
+    border-bottom: $item-border-width $item-border-style $item-border-color;
+}
+
+.menu-show-home-page,
+.menu-book-now,
+.menu-show-appointment-records,
+.menu-show-field-list,
+.menu-check-in,
+.menu-log-out {
+    width: $item-width;
+    height: $item-height;
+    font-size: $item-font-size;
+    color: $item-color;
+    border-right: $item-border-width $item-border-style $item-border-color;
+    border-bottom: $item-border-width $item-border-style $item-border-color;
+    border-left: $item-border-width $item-border-style $item-border-color;
+}
+
+@media (min-width: $pc-min-width) {
+    .menu {
+        width: calc(0.9 * $pc-display-size);
+    }
+}

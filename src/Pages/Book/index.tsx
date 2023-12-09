@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const Book = () => {
-    return (<div>Book</div>);
+    return (
+        <Pager page="book" />
+    );
 };
 
 export default Book;

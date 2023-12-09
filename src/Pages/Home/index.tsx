@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const Home = () => {
-    return (<div>Home</div>);
+    return (
+        <Pager page="home" />
+    );
 };
 
 export default Home;
