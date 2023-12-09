@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const FieldDetails = () => {
-    return (<div>FieldDetails</div>);
+    return (
+        <Pager page="field-details" />
+    );
 };
 
 export default FieldDetails;

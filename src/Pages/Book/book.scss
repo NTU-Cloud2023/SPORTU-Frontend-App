@@ -1,0 +1,17 @@
+@import "../../variables";
+
+.book {
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+@media (min-width: $pc-min-width) {
+    .book {
+        left: calc(50vw - $pc-display-size / 2);
+        width: $pc-display-size;
+    }
+}

@@ -1,5 +1,9 @@
+import Pager from '../../Components/Pager';
+
 const Appointments = () => {
-    return (<div>Appointments</div>);
+    return (
+        <Pager page="appointments" />
+    );
 };
 
 export default Appointments;

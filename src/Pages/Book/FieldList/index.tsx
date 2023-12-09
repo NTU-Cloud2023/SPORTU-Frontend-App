@@ -1,5 +1,9 @@
+import Pager from '../../../Components/Pager';
+
 const BookFieldList = () => {
-    return (<div>BookFieldList</div>);
+    return (
+        <Pager page="book__field-list" />
+    );
 };
 
 export default BookFieldList;
