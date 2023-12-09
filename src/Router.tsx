@@ -13,8 +13,8 @@ import FieldMap from './Pages/FieldMap';
 import BookFieldMap from './Pages/Book/FieldMap';
 import BookFieldList from './Pages/Book/FieldList';
 import CheckIn from './Pages/CheckIn';
-import Appointments from './Pages/Appointments/Index';
-import FieldDetails from './Pages/FieldDetails/Index';
+import Appointments from './Pages/Appointments/Appointments';
+import FieldDetails from './Pages/FieldDetails/FieldDetails';
 
 const Router = () => {
     return (
