@@ -1,9 +1,22 @@
+import { useContext, useState } from 'react';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './login.scss';
+import { GlobDataContext } from '../../Contexts/GlobDataProvider';
+import { access } from 'fs';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const [account, setAccount] = useState('');
+    const [password, setPassword] = useState('');
+    const {
+        fetchUser,
+        fetchingUser
+    } = useContext(GlobDataContext);
+    const navigate = useNavigate();
     const handleLogin = () => {
-        window.location.href = 'http://localhost:3000/home';
+        if (fetchingUser === false) {
+            fetchUser(account).then(() => navigate('/home'));
+        }
     };
 
     return (
@@ -16,12 +29,16 @@ const Login = () => {
             <input
                 className="login-email"
                 type="text"
+                value={account}
+                onChange={(e) => setAccount(e.target.value)}
                 placeholder="電子信箱"
             />
             <div className="login-space3" />
             <input
                 className="login-password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="密碼"
             />
             <div className="login-space4" />

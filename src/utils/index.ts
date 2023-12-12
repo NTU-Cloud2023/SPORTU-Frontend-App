@@ -1,5 +1,7 @@
 import delay from './delay';
+import getDistance from './getDistance';
 
 export {
-    delay
+    delay,
+    getDistance
 };

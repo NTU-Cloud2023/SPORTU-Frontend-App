@@ -1,32 +1,22 @@
 import SecondaryTitle from '../Title/SecondaryTitle';
 import { textMap } from '../../i18n/textMap';
 import './fieldListBody.scss';
-import FieldCard, { FieldAPIResponse } from '../FieldCard';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { apiResponseProxy } from '../../API/apiResponseProxy';
+import FieldCard from '../FieldCard';
+import { useContext, useEffect } from 'react';
+import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 
 const FieldListBody = () => {
-    const [fields, setFields] = useState<FieldAPIResponse[]>([]);
+
+    const {
+        fetchFields,
+        fetchingFields,
+        fields
+    } = useContext(GlobDataContext);
 
     useEffect(() => {
-        axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
-
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-
-        axios({
-            method: 'GET',
-            url: 'https://admin.chillmonkey.tw/v1/spaces',
-            withCredentials: false
-        }).then((res) => {
-            setFields(res.data);
-        }).catch(() => {
-            setFields(apiResponseProxy.fields());
-        });
-    }, []);
-
-    useEffect(() => {
-        console.log(fields);
+        if (fields.length === 0 && fetchingFields === false) {
+            fetchFields();
+        }
     }, [fields]);
 
     return (

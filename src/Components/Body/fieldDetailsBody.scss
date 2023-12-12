@@ -1,0 +1,36 @@
+@import "../../variables";
+
+.field-details-body {
+    background-color: $dark;
+
+    .wrapper {
+        padding: 30px 30px 1px;
+
+        .field-img-container {
+            margin: 1rem 0;
+
+            .field-img {
+                padding-bottom: calc(100% / 312 * 207);
+                width: 100%;
+                background-image: url("../../assets/images/field-img.png");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .sub-title {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: $secondary;
+        }
+
+        // .time-list
+
+        .iframe-container {
+            margin: 0 -30px;
+        }
+    }
+}

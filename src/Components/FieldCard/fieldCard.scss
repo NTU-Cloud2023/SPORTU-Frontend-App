@@ -9,7 +9,7 @@
         border-radius: 1rem;
         box-shadow:
             -2px -2px 5px rgba(255, 255, 255, 0.2),
-            3px 3px 3px rgba(0, 0, 0, 0.3);
+            3px 3px 3px rgba(0, 0, 0, 0.5);
 
         .field-img-container {
             position: relative;
@@ -78,32 +78,5 @@
             font-size: 0.8rem;
             color: $disabled;
         }
-    }
-}
-
-.icon {
-    display: inline-block;
-    margin-right: 0.5rem;
-    width: 1rem;
-    height: 1rem;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: 70% 70%;
-
-    &.nav {
-        background-image: url("../../assets/images/icon/nav.svg");
-    }
-
-    &.pin {
-        background-image: url("../../assets/images/icon/pin.svg");
-    }
-
-    &.walking {
-        margin-top: -0.3rem;
-        width: 1rem;
-        height: 1.7rem;
-        background-image: url("../../assets/images/icon/walking-man.png");
-        background-position: bottom right;
-        background-size: 66% 66%;
     }
 }

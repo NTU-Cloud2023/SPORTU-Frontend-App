@@ -71,7 +71,7 @@ const Router = () => {
                     element={<Appointments />}
                 />
                 <Route
-                    path="/field-details"
+                    path="/field-details/:id"
                     element={<FieldDetails />}
                 />
             </Routes>

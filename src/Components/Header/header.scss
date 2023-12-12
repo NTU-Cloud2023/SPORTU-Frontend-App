@@ -6,6 +6,7 @@
     height: $header-height;
     background-color: $sportsman-background-color;
     border-bottom: 2px solid $secondary-color;
+    z-index: $header-z;
 }
 
 .header-menu-bar {
