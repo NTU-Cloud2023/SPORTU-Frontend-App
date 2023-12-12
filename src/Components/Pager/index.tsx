@@ -33,6 +33,13 @@ const Pager = (props: PagerProps) => {
 
     return (
         <div className="pager">
+            <Header
+                handleShowMenu={handleShowMenu}
+                handleShowNotifications={handleShowNotifications}
+            />
+            <div className="pager-wrapper">
+                <Body page={props.page} />
+            </div>
             {
                 shouldShowMenu ?
                     <Menu handleCloseMenu={handleCloseMenu} />
@@ -45,12 +52,6 @@ const Pager = (props: PagerProps) => {
                     :
                     <div/>
             }
-
-            <Header
-                handleShowMenu={handleShowMenu}
-                handleShowNotifications={handleShowNotifications}
-            />
-            <Body page={props.page} />
         </div>
     );
 };

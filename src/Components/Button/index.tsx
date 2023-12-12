@@ -1,7 +1,19 @@
 import './button.scss';
 
-const Button = () => {
-    return (<div>Button</div>);
+export interface ButtonProps {
+    text: string
+}
+
+const Button = ({
+    text
+}: ButtonProps) => {
+    return (
+        <div className="btn-container">
+            <div className="primary-btn">
+                {text}
+            </div>
+        </div>
+    );
 };
 
 export default Button;

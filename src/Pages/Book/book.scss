@@ -1,10 +1,10 @@
 @import "../../variables";
 
 .book {
-    overflow: auto;
     position: absolute;
     top: 0;
     left: 0;
+    overflow: auto;
     width: 100vw;
     height: 100vh;
 }
