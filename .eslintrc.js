@@ -4,12 +4,9 @@ module.exports = {
     extends: [
         'react-app',
         'react-app/jest',
-
-        // Uses the recommended rules from @eslint-plugin-react
         'plugin:react/recommended',
-
-        // Uses the recommended rules from @typescript-eslint/eslint-plugin
         'plugin:@typescript-eslint/recommended'
+        // 'plugin:storybook/recommended'
     ],
     parserOptions: {
         // Allows for the parsing of modern ECMAScript features
