@@ -42,7 +42,7 @@ const Login = () => {
             />
             <div className="login-space4" />
             <button
-                className="login-log-in"
+                className="login-login"
                 type="button"
                 onClick={handleLogin}
             >

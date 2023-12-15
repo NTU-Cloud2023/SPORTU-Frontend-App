@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import Menu from '../../Components/Menu';
-import Notification from '../../Components/Notification';
+import Notifications from '../../Components/Notifications';
 import Header from '../../Components/Header';
 import Body from '../Body';
 import './pager.scss';
@@ -61,7 +61,7 @@ const Pager = (props: PagerProps) => {
             }
             {
                 shouldShowNotifications ?
-                    <Notification handleCloseNotifications={handleCloseNotifications} />
+                    <Notifications handleCloseNotifications={handleCloseNotifications} />
                     :
                     <div/>
             }
