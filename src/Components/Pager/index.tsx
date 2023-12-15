@@ -4,7 +4,7 @@ import Notification from '../../Components/Notification';
 import Header from '../../Components/Header';
 import Body from '../Body';
 import './pager.scss';
-import GlobDataProvider, { GlobDataContext } from '../../Contexts/GlobDataProvider';
+import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import { useNavigate } from 'react-router-dom';
 
 type PagerProps = {
@@ -39,7 +39,6 @@ const Pager = (props: PagerProps) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(user);
         if (user.success === false || !user.data?.id) {
             navigate('/login');
         }

@@ -28,7 +28,13 @@ const FieldCard = (props: FieldAPIResponse) => {
                         <div className="icon walking"></div>
                         {dist}m
                     </div>
-                    <div className="field-img"></div>
+                    <div
+                        className="field-img"
+                        style={{
+                            backgroundImage: `url(${props?.pic})`
+                        }}
+                    >
+                    </div>
                 </div>
 
                 <div className="status-container">
