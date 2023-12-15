@@ -26,3 +26,14 @@ type PageName =
     'provider__home'
 
 type BallType = '' | '籃球' | '網球' | '羽球' | '排球' | '桌球' | '棒球' | '足球'
+
+type LayoutColors = 'primary' |
+'secondary' |
+'content' |
+'input' |
+'dark' |
+'dark-2' |
+'info' |
+'danger' |
+'warning' |
+'disabled'
