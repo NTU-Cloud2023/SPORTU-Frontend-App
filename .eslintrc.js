@@ -29,10 +29,9 @@ module.exports = {
         // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         // 'no-alert': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-
+        // 'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
         /* common */
         indent: [2, 4, { SwitchCase: 1 }],
-        // 'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
         'no-unused-vars': 'off',
         'comma-dangle': ['error', 'never'],
         'global-require': 'off',
