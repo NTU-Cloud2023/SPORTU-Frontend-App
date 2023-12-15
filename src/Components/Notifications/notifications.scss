@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.notification {
+.notifications {
     overflow: auto;
     position: fixed;
     top: 0;
@@ -11,7 +11,7 @@
     z-index: $header-z;
 }
 
-.notification-cancel {
+.notifications-cancel {
     position: absolute;
     top: 0;
     right: 0;
@@ -22,11 +22,11 @@
     height: $notification-cancel-height;
 }
 
-.notification-space1 {
+.notifications-space1 {
     height: 12%;
 }
 
-.notification-item {
+.notifications-notification-item {
     margin: 0 12px;
     padding: 10px 0;
     font-size: 16px;
@@ -35,7 +35,7 @@
 }
 
 @media (min-width: $pc-min-width) {
-    .notification {
+    .notifications {
         width: calc(0.9 * $pc-display-size);
     }
 }

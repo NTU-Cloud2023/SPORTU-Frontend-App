@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import Menu from '../../Components/Menu';
-import Notification from '../../Components/Notification';
+import Notifications from '../../Components/Notifications';
 import Header from '../../Components/Header';
 import Body from '../Body';
 import './pager.scss';
-import GlobDataProvider, { GlobDataContext } from '../../Contexts/GlobDataProvider';
+import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import { useNavigate } from 'react-router-dom';
 
 type PagerProps = {
@@ -62,7 +62,7 @@ const Pager = (props: PagerProps) => {
             }
             {
                 shouldShowNotifications ?
-                    <Notification handleCloseNotifications={handleCloseNotifications} />
+                    <Notifications handleCloseNotifications={handleCloseNotifications} />
                     :
                     <div/>
             }
