@@ -1,0 +1,83 @@
+@import "../../variables";
+
+.field-card {
+    color: $content;
+
+    .card-body {
+        margin-bottom: 2rem;
+        padding: 1.2rem;
+        border-radius: 1rem;
+        box-shadow:
+            -2px -2px 5px rgba(255, 255, 255, 0.2),
+            3px 3px 3px rgba(0, 0, 0, 0.5);
+
+        .field-img-container {
+            position: relative;
+
+            .distance-tag {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 0.1rem 0.5rem;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: $dark;
+                background-color: $primary;
+                border-radius: 0 0 0 1rem;
+                box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.6);
+            }
+
+            .field-img {
+                margin-bottom: 1rem;
+                padding-bottom: calc(100% / 312 * 150);
+                width: 100%;
+                background-image: url("../../assets/images/field-img.png");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 100% auto;
+                border-radius: 1rem;
+                box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .status-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 0.6rem;
+
+            .text-pill {
+                margin: 0 0.3rem;
+                padding: 0.2rem 0.5rem;
+                font-size: 1rem;
+                text-align: center;
+                border-radius: 0.8rem;
+
+                &.dark {
+                    background-color: $dark-2;
+
+                    // box-shadow: inset 1px 1px 5px rgb(0, 0, 0);
+
+                    &:nth-child(1) {
+                        flex: 1;
+                    }
+                }
+
+                &.primary {
+                    font-weight: bold;
+                    color: $dark;
+                    background-color: $primary;
+                }
+            }
+        }
+
+        .field-title {
+            font-size: 1.4rem;
+        }
+
+        .field-address,
+        .field-position {
+            font-size: 0.8rem;
+            color: $disabled;
+        }
+    }
+}

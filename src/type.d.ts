@@ -5,7 +5,7 @@ type PageName =
     // You can view the page here:
     // https://xd.adobe.com/view/f3884483-41cf-4a1a-98f9-549d87df99bc-a6db/grid
 
-    'login' | // 登入
+    'login'  |  // 登入
     'register' | // 註冊
     'register-success' | // 註冊成功
     'home' | // 首頁
@@ -24,3 +24,5 @@ type PageName =
 
     'provider__login' |
     'provider__home'
+
+type BallType = '' | '籃球' | '網球' | '羽球' | '排球' | '桌球' | '棒球' | '足球'

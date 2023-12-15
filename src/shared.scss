@@ -1,0 +1,56 @@
+@import "./variables";
+
+.icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 70% 70%;
+
+    &.nav {
+        background-image: url("./assets/images/icon/nav.svg");
+    }
+
+    &.pin {
+        background-image: url("./assets/images/icon/pin.svg");
+    }
+
+    &.left-triangle {
+        margin-right: 0.2rem;
+        background-image: url("./assets/images/icon/left-triangle.svg");
+        background-size: 100% 100%;
+    }
+
+    &.map {
+        margin-right: 0.2rem;
+        background-image: url("./assets/images/icon/map.svg");
+        background-size: 100% 100%;
+    }
+
+    &.control {
+        margin-right: 0.2rem;
+        background-image: url("./assets/images/icon/control.svg");
+        background-size: 100% 100%;
+    }
+
+    &.walking {
+        margin-top: -0.3rem;
+        width: 1rem;
+        height: 1rem;
+        background-image: url("./assets/images/icon/walking-man.png");
+        background-position: bottom right;
+        background-size: 66% 66%;
+    }
+}
+
+.default-content {
+    margin: 1rem 0;
+    color: $content;
+
+    &.disabled,
+    .disabled {
+        color: $disabled;
+    }
+}

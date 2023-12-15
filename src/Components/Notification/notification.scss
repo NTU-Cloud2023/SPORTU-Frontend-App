@@ -1,23 +1,24 @@
 @import "../../variables";
 
 .notification {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 90vw;
     height: 100vh;
     background-color: $sportsman-background-color;
+    z-index: $header-z;
 }
 
 .notification-cancel {
     position: absolute;
     top: 0;
     right: 0;
-    width: $notification-cancel-height;
-    height: $notification-cancel-height;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: $notification-cancel-height;
+    height: $notification-cancel-height;
 }
 
 .notification-space1 {

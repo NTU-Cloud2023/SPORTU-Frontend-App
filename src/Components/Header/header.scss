@@ -1,38 +1,40 @@
 @import "../../variables";
 
 .header {
+    position: fixed;
     width: 100vw;
     height: $header-height;
     background-color: $sportsman-background-color;
     border-bottom: 2px solid $secondary-color;
+    z-index: $header-z;
 }
 
 .header-menu-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     float: left;
     margin-left: 6%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .header-bell {
-    float: right;
-    margin-right: 6%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    float: right;
+    margin-right: 6%;
+    height: 100%;
 }
 
 .header-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     float: right;
     margin-right: 6%;
     width: 40px;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: $secondary-color;
 }
 

@@ -9,23 +9,24 @@ $item-border-style: solid;
 $item-border-color: $secondary-color;
 
 .menu {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 90vw;
     height: 100vh;
     background-color: $sportsman-background-color;
+    z-index: $header-z;
 }
 
 .menu-cancel {
     position: absolute;
     top: 0;
     right: 0;
-    width: $menu-cancel-height;
-    height: $menu-cancel-height;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: $menu-cancel-height;
+    height: $menu-cancel-height;
 }
 
 .menu-space1 {

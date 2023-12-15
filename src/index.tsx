@@ -1,15 +1,21 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 import './index.css';
+import './shared.scss';
 import reportWebVitals from './reportWebVitals';
 import Router from './Router';
+import GlobDataProvider from './Contexts/GlobDataProvider';
+
+// require('dotenv').config();
 
 const container = document.getElementById('app');
 const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
-        <Router />
+        <GlobDataProvider>
+            <Router />
+        </GlobDataProvider>
     </React.StrictMode>
 );
 
