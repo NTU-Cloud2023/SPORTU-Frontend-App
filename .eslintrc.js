@@ -26,9 +26,9 @@ module.exports = {
         // Can be used to overwrite rules specified from the extended configs
         // e.g. "@typescript-eslint/explicit-function-return-type": "off",
         /* tslint default */
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-alert': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        // 'no-alert': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 
         /* common */
         indent: [2, 4, { SwitchCase: 1 }],

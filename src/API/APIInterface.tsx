@@ -16,7 +16,10 @@ export interface FieldAPIResponse {
     ball_type: BallType,
     headcount: number,
     updated_at: string,
-    created_at: string
+    created_at: string,
+    nav_url: string,
+    pic: string,
+    in_game: number
 }
 
 export interface UserData {
@@ -31,3 +34,5 @@ export interface UserAPIResponse {
     success: boolean,
     data: UserData | undefined
 }
+
+export type SportAPIResponse = BallType
