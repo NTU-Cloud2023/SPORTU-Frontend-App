@@ -42,7 +42,13 @@ const FieldDetailsBody = () => {
                 />
 
                 <div className="field-img-container">
-                    <div className="field-img"></div>
+                    <div
+                        className="field-img"
+                        style={{
+                            backgroundImage: `url(${fieldDetails?.pic})`
+                        }}
+                    >
+                    </div>
                 </div>
                 <div className="default-content">
                     場館名稱: {fieldDetails?.name}

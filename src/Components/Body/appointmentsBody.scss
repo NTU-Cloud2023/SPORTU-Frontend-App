@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.appointment-body {
+    background-color: $dark;
+
+    .wrapper {
+        padding: 30px 30px 1px;
+
+        .appointment-list {
+            margin: 0 -30px;
+        }
+    }
+}

@@ -19,4 +19,32 @@
         padding: 0 0 1rem;
         color: $input;
     }
+
+    &.third {
+        color: $input;
+    }
+
+    &.left {
+        text-align: left;
+    }
+
+    &.color-primary {
+        color: $primary;
+    }
+
+    &.color-secondary {
+        color: $secondary;
+    }
+
+    &.color-content {
+        color: $content;
+    }
+
+    &.color-danger {
+        color: $danger;
+    }
+
+    &.m {
+        font-size: 1.6rem;
+    }
 }

@@ -1,32 +1,51 @@
-import React, { Dispatch, useContext, useState } from 'react';
+import { Dispatch, useContext, useEffect, useMemo, useState } from 'react';
 import InputBar from '../InputBar';
 import BodyTitle from '../Title/BodyTitle';
 import './bookBody.scss';
 import Button from '../Button';
 import { textMap } from '../../i18n/textMap';
-import SelectableInputBar from '../SelectableInputBar';
 import PillButton from '../PillButton';
-import { useNavigate } from 'react-router-dom';
 import Gap from '../Gap';
 import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import FieldCardM from '../FieldCardM';
+import SelectInputBar, { SelectOption } from '../SelectInputBar';
+import SelectableInputBar from '../SelectableInputBar';
+import { FieldAPIResponse } from '../../API/APIInterface';
 
 const BookBody = () => {
     const [type, setType] = useState<BallType>('');
     const [openFieldListM, setOpenFieldListM] = useState(false);
-    const [openFieldCard, setOpenFieldCard] = useState(false);
-    const [selectedFiledId, setSelectedFieldId] = useState<number>(NaN);
-    const { fields } = useContext(GlobDataContext);
-    const navigate = useNavigate();
+    const [selectedSport, setSelectedSport] = useState('');
+    const [selectedField, setSelectedField] = useState<FieldAPIResponse|undefined>(undefined);
+    const {
+        fields,
+        sports,
+        fetchSports,
+        fetchingSports
+    } = useContext(GlobDataContext);
+    const sportOptions = useMemo<SelectOption[]>(() => {
+        const opts = sports.map<SelectOption>((sport) => ({
+            text: sport.cht_game_name,
+            value: sport.type.toString()
+        }));
+
+        return opts;
+    }, [sports]);
+
+    useEffect(() => {
+        if (sports.length === 0 && fetchingSports === false) {
+            fetchSports();
+        }
+    }, [fields]);
 
     return (
         <div className="book-body">
             <div className="wrapper">
                 <BodyTitle title={textMap.book_title} />
-                <InputBar
-                    inputText={type}
-                    setInputText={setType as Dispatch<string>}
-                    placeholder={textMap.field_placeholder}
+                <SelectInputBar
+                    options={sportOptions}
+                    setValue={setSelectedSport}
+                    value={selectedSport}
                 />
                 <InputBar
                     inputText={type}
