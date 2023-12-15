@@ -89,9 +89,9 @@ const BookBody = () => {
                                     onClick={() => {}}
                                 />
                             </div>
+                        </div>
 
-                            <Gap h="1rem" />
-
+                        <div className="scroll-area">
                             {
                                 fields.map((f) => (
                                     <FieldCardM
