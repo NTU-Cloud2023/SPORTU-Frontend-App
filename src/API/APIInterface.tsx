@@ -11,6 +11,8 @@ export interface FieldAPIResponse {
     longitude: string,
     capacity: number,
     type: number,
+    address: string,
+    eachtime: number,
     ball_type: BallType,
     headcount: number,
     updated_at: string,

@@ -4,5 +4,7 @@ export const textMap = {
     'appointment': '預約',
     'near_field_title': '附近的球場',
     'detailed_information': '詳細資訊',
-    'prev_page': '上一頁'
+    'prev_page': '上一頁',
+    'map_preview': '地圖檢視',
+    'sorted_by': '排序條件'
 };

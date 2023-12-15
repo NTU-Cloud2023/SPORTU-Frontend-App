@@ -23,6 +23,18 @@
         background-size: 100% 100%;
     }
 
+    &.map {
+        margin-right: 0.2rem;
+        background-image: url("./assets/images/icon/map.svg");
+        background-size: 100% 100%;
+    }
+
+    &.control {
+        margin-right: 0.2rem;
+        background-image: url("./assets/images/icon/control.svg");
+        background-size: 100% 100%;
+    }
+
     &.walking {
         margin-top: -0.3rem;
         width: 1rem;

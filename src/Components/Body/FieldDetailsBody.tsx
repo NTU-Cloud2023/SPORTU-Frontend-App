@@ -48,7 +48,8 @@ const FieldDetailsBody = () => {
                     場館名稱: {fieldDetails?.name}
                 </div>
                 <div className="default-content">
-                    場館地址: <span className="disabled">廠商未提供</span>
+                    場館地址: {fieldDetails?.address}
+                    {/* <span className="disabled">廠商未提供</span> */}
                 </div>
                 <div className="default-content">
                     場館類別: {fieldDetails?.ball_type.cht_game_name}
@@ -63,7 +64,8 @@ const FieldDetailsBody = () => {
                     當前距離: {dist} 公尺
                 </div>
                 <div className="default-content">
-                    單場區間: <span className="disabled">廠商未提供</span>
+                    單場區間: {fieldDetails?.eachtime} 小時
+                    {/* <span className="disabled">廠商未提供</span> */}
                 </div>
                 <div className="sub-title">
                     該場地兩週內可預約時段

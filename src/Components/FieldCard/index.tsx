@@ -51,7 +51,7 @@ const FieldCard = (props: FieldAPIResponse) => {
                     {props.name}
                 </div>
                 <div className="field-address">
-                    <div className="icon nav"></div>無
+                    <div className="icon nav"></div>{props.address}
                 </div>
                 <div className="field-position">
                     <div className="icon pin"></div>{props.latitude}, {props.longitude}

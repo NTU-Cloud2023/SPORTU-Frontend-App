@@ -10,4 +10,24 @@
         background-repeat: no-repeat;
         background-size: 100% auto;
     }
+
+    .buttons-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
+}
+
+.field-list-m {
+    position: fixed;
+    top: $header-height;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $dark;
+    z-index: $page-cover;
+
+    .container {
+        padding: 30px;
+    }
 }

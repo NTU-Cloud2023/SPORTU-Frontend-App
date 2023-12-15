@@ -1,21 +1,31 @@
+import { CSSProperties } from 'react';
 import './pillButton.scss';
+
+export type IconType = '' | 'left-triangle' | 'map' | 'control' | 'nav' | 'pin'
 
 export interface PillButtonProps {
     text: string,
-    onClick: () => void
+    onClick: () => void,
+    type?: IconType,
+    style?: CSSProperties
 }
 
 const PillButton = ({
     text,
-    onClick
+    onClick,
+    type='left-triangle',
+    style={}
 }: PillButtonProps) => {
     return (
-        <div className="pill-btn-container">
+        <div
+            className="pill-btn-container"
+            style={style}
+        >
             <div
                 className="pill-btn"
-                onClick={() => onClick()}
+                onClick={onClick}
             >
-                <div className="icon left-triangle"></div>
+                <div className={`icon ${type}`}></div>
                 {text}
             </div>
         </div>
