@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './login.scss';
 import { GlobDataContext } from '../../Contexts/GlobDataProvider';
-import { access } from 'fs';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -43,7 +42,7 @@ const Login = () => {
             />
             <div className="login-space4" />
             <button
-                className="login-log-in"
+                className="login-login"
                 type="button"
                 onClick={handleLogin}
             >

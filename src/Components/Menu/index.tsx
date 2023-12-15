@@ -29,7 +29,7 @@ const Menu = (props: MenuProps) => {
     };
 
     const handleLogout = () => {
-        navigate('login');
+        navigate('/login');
     };
 
     return (
@@ -69,7 +69,7 @@ const Menu = (props: MenuProps) => {
                 報到
             </button>
             <button
-                className="menu-log-out"
+                className="menu-logout"
                 onClick={handleLogout}
             >
                 登出
