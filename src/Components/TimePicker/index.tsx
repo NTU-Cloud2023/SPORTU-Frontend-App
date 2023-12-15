@@ -1,5 +1,4 @@
-import { Dispatch } from 'react';
-import './inputBar.scss';
+import './timePicker.scss';
 
 export interface TimeRange {
     startTime: string,
