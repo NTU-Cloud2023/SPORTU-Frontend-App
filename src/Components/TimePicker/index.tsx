@@ -1,18 +1,18 @@
 import './timePicker.scss';
 
-export interface TimeRange {
+export interface CusTimeRange {
     startTime: string,
     endTime: string
 }
 
-export interface InputBarProps {
-    value: TimeRange,
-    setValue: (d: TimeRange) => void
+export interface TimePickerProps {
+    value: CusTimeRange,
+    setValue: (d: CusTimeRange) => void
 }
 
 const TimePicker = ({
     value, setValue
-}: InputBarProps) => {
+}: TimePickerProps) => {
     return (
         <div className="time-picker-bar">
             <div

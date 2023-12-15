@@ -11,12 +11,17 @@ import FieldCardM from '../FieldCardM';
 import SelectInputBar, { SelectOption } from '../SelectInputBar';
 import SelectableInputBar from '../SelectableInputBar';
 import { FieldAPIResponse } from '../../API/APIInterface';
+import TimePicker, { CusTimeRange } from '../TimePicker';
 
 const BookBody = () => {
     const [type, setType] = useState<BallType>('');
     const [openFieldListM, setOpenFieldListM] = useState(false);
     const [selectedSport, setSelectedSport] = useState('');
     const [selectedField, setSelectedField] = useState<FieldAPIResponse|undefined>(undefined);
+    const [selectedTime, setSelectedTime] = useState<CusTimeRange>({
+        startTime: '',
+        endTime: ''
+    });
     const {
         fields,
         sports,
@@ -47,11 +52,15 @@ const BookBody = () => {
                     setValue={setSelectedSport}
                     value={selectedSport}
                 />
-                <InputBar
+                <TimePicker
+                    value={selectedTime}
+                    setValue={setSelectedTime}
+                />
+                {/* <InputBar
                     inputText={type}
                     setInputText={setType as Dispatch<string>}
                     placeholder={textMap.field_placeholder}
-                />
+                /> */}
                 <SelectableInputBar
                     text={textMap.field_placeholder}
                     onClick={() => setOpenFieldListM(true)}
