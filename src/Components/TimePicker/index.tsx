@@ -1,16 +1,16 @@
 import { DateTimePicker } from '@progress/kendo-react-dateinputs';
 import '@progress/kendo-theme-default/dist/default-main-dark.scss';
 import './timePicker.scss';
+import { useEffect } from 'react';
 
-
-export interface CusTimeRange {
-    startTime: string,
-    endTime: string
-}
+/***
+ * KendoReact Documentation
+ * https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/
+ */
 
 export interface TimePickerProps {
-    value: CusTimeRange,
-    setValue: (d: CusTimeRange) => void
+    value: Date|null,
+    setValue: (d: Date) => void
 }
 
 const getNextHourTimestamp = () => {
@@ -22,7 +22,11 @@ const getNextHourTimestamp = () => {
 const TimePicker = ({
     value, setValue
 }: TimePickerProps) => {
-    console.log(getNextHourTimestamp());
+    const defaultDate = new Date(getNextHourTimestamp());
+
+    useEffect(() => {
+        setValue(defaultDate);
+    }, []);
 
     return (
         <div className="time-picker-bar">
@@ -31,10 +35,12 @@ const TimePicker = ({
                     minute: 60,
                     second: 60
                 }}
+                format="yyyy-MM-dd hh:mm a"
                 size="large"
                 fillMode="outline"
                 rounded="large"
-                defaultValue={new Date(getNextHourTimestamp())}
+                value={value}
+                onChange={(e) => setValue(e.value || defaultDate)}
             />
         </div>
     );
