@@ -16,9 +16,10 @@ const SelectInputBar = ({
     options,
     setValue
 }: SelectInputBarProps) => {
+
     useEffect(() => {
-        setValue(options[0].value);
-    });
+        if (options.length > 1) setValue(options[0].value);
+    }, [options]);
 
     return (
         <div className="select-input-bar">
