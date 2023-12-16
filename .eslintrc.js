@@ -49,6 +49,7 @@ module.exports = {
         'linebreak-style': 'off',
         'object-shorthand': 'off',
         'no-nested-ternary': 'off',
+        'no-restricted-globals': 'off',
         'semi': [2, 'always'],
         'quotes': [2, 'single'],
 
@@ -59,6 +60,7 @@ module.exports = {
         /* typescript */
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
 
         /* react */
         'jsx-quotes': [2, 'prefer-double'],

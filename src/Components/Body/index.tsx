@@ -6,6 +6,7 @@ import CheckInBody from './CheckInBody';
 import FieldDetailsBody from './FieldDetailsBody';
 import FieldListBody from './FieldListBody';
 import FieldMapBody from './FieldMapBody';
+import NearByBody from './NearByBody';
 
 type BodyProps = {
 	page: PageName;
@@ -18,7 +19,7 @@ const Body = (props: BodyProps) => {
                 props.page === 'home' ?
                     <div>
                         <BookBody />
-                        <FieldListBody />
+                        <NearByBody />
                     </div>
                     :
                     <div />

@@ -6,48 +6,92 @@ import Button from '../Button';
 import { textMap } from '../../i18n/textMap';
 import PillButton from '../PillButton';
 import Gap from '../Gap';
-import { GlobDataContext } from '../../Contexts/GlobDataProvider';
+import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCardM from '../FieldCardM';
-import SelectInputBar, { SelectOption } from '../SelectInputBar';
 import SelectableInputBar from '../SelectableInputBar';
-import { FieldAPIResponse } from '../../API/APIInterface';
+import { SportAPIResponse } from '../../API/APIInterface';
 import TimePicker from '../TimePicker';
+import FieldCardPopUp from '../PopUp/FieldCardPopUp';
+import SelectSportInputBar from '../SelectInputBar/SelectSportInputBar';
+import axios from 'axios';
 
 const BookBody = () => {
-    const [type, setType] = useState<BallType>('');
     const [openFieldListM, setOpenFieldListM] = useState(false);
-    const [selectedSport, setSelectedSport] = useState('');
-    const [selectedField, setSelectedField] = useState<FieldAPIResponse|undefined>(undefined);
+    const [selectedSport, setSelectedSport] = useState<SportAPIResponse|undefined>(undefined);
+    const [selectedField, setSelectedField] = useState<UpdatedFieldData|undefined>(undefined);
+    const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<Date|null>(null);
+    const [popUpStatus, setPopupStatus] = useState(false);
+
     const {
+        user,
         fields,
         sports,
         fetchSports,
         fetchingSports
     } = useContext(GlobDataContext);
-    const sportOptions = useMemo<SelectOption[]>(() => {
-        const opts = sports.map<SelectOption>((sport) => ({
-            text: sport.cht_game_name,
-            value: sport.type.toString()
-        }));
+    const book = async () => {
+        const cks = {
+            sport: true,
+            date: true,
+            overdue: true,
+            onHour: true,
+            field: true,
+            match: true
+        };
 
-        return opts;
-    }, [sports]);
+        if (selectedSport === undefined) cks.sport = false;
+        if (selectedTime === null) cks.date = false;
+        else if ((selectedTime.getTime() - new Date().getTime()) < -3600000) cks.overdue = false;
+        else if (selectedTime.getTime() % 3600000 !== 0) cks.onHour = false;
+        if (selectedField === undefined) cks.field = false;
+        else if (selectedField?.ball_type.type !== selectedSport?.type) cks.match = false;
+
+        if (Object.values(cks).includes(false)) {
+            alert(`
+很抱歉，您輸入的資料有誤:
+${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選取運動時間\n'}${cks.overdue ? '' : '● 該時間已無法預約\n'}${cks.onHour ? '' : '● 運動時間需為整點\n'}${cks.field ? '' : '● 請選擇球場\n'}${cks.match ? '' : '● 所選的球場與球種不相同\n'}
+請重新確認，如有問題請洽球場管理人員，謝謝
+        `);
+        } else {
+            axios({
+                method: 'POST',
+                url: `https://admin.chillmonkey.tw/v1/spaces/${selectedField?.id}/reserve`,
+                data: {
+                    userId: user.data?.id,
+                    timestamp: selectedTime!.getTime() / 1000
+                }
+            }).then((r) => {
+                console.log(r);
+            }).catch((e) => {
+                console.log(e);
+            });
+
+            // const iter = selectedField?.eachtime;
+            // for (let i = 0; i < iter; i++) {}
+        }
+    };
 
     useEffect(() => {
         if (sports.length === 0 && fetchingSports === false) {
             fetchSports();
         }
-    }, [fields]);
+    }, []);
+
+    useEffect(() => {
+        if (selectedField !== undefined
+            && selectedField.ball_type.type !== selectedSport?.type) {
+            setSelectedField(undefined);
+        }
+    }, [selectedSport]);
 
     return (
         <div className="book-body">
             <div className="wrapper">
                 <BodyTitle title={textMap.book_title} />
-                <SelectInputBar
-                    options={sportOptions}
-                    setValue={setSelectedSport}
-                    value={selectedSport}
+                <SelectSportInputBar
+                    sports={sports}
+                    setSport={setSelectedSport}
                 />
                 <TimePicker
                     value={selectedTime}
@@ -59,10 +103,13 @@ const BookBody = () => {
                     placeholder={textMap.field_placeholder}
                 /> */}
                 <SelectableInputBar
-                    text={textMap.field_placeholder}
+                    text={selectedField ? selectedField.name : textMap.field_placeholder}
                     onClick={() => setOpenFieldListM(true)}
                 />
-                <Button text={textMap.appointment} />
+                <Button
+                    text={textMap.appointment}
+                    onClick={book}
+                />
             </div>
 
             {
@@ -91,14 +138,30 @@ const BookBody = () => {
                         <div className="scroll-area">
                             {
                                 fields.map((f) => (
-                                    <FieldCardM
-                                        {...f}
+                                    <div
+                                        onClick={() => {
+                                            setPopupField(f);
+                                            setPopupStatus(true);
+                                        }}
                                         key={`field-card-m-${f.id}`}
-                                    />
+                                    >
+                                        <FieldCardM {...f} />
+                                    </div>
                                 ))
                             }
                         </div>
                     </div>
+                ) : ''
+            }
+
+            {
+                (popUpStatus && popupField) ? (
+                    <FieldCardPopUp
+                        field={popupField}
+                        setField={setSelectedField}
+                        closeSelection={() => setPopupStatus(false)}
+                        closePopup={() => setOpenFieldListM(false)}
+                    />
                 ) : ''
             }
         </div>

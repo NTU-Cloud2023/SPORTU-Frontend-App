@@ -4,6 +4,8 @@ export interface BallType {
     cht_game_name: string
 }
 
+export type SportAPIResponse = BallType
+
 export interface FieldAPIResponse {
     id: number,
     name: string,
@@ -35,4 +37,27 @@ export interface UserAPIResponse {
     data: UserData | undefined
 }
 
-export type SportAPIResponse = BallType
+export interface Appointment {
+    /**
+     * Pending 是排隊處理中
+     * Waiting 是正在媒合 (等等把球場in_game都改1，就會跳過這個狀態)
+     * Failed 是預約失敗
+     * Successed 是成功
+     */
+    UserId: string,
+    Timestamp: string,
+    CourtID: string,
+    NickName: string,
+    Status: 'Pending' | 'Waiting' | 'Failed' | 'Successed',
+    TimestampUserId: string
+}
+
+export interface AppointmentAPIResponse {
+    success: boolean,
+    data: Appointment[]
+}
+
+export interface DistanceAPIResponse {
+    distance: number,
+    duration: number
+}

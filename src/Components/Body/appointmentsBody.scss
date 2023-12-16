@@ -3,11 +3,23 @@
 .appointment-body {
     background-color: $dark;
 
-    .wrapper {
+    > .wrapper {
         padding: 30px 30px 1px;
 
         .appointment-list {
             margin: 0 -30px;
+
+            .empty-check {
+                display: none;
+                padding: 0.5rem 30px;
+                color: $disabled;
+                border-top: 1px solid rgba($disabled, 0.5);
+                border-bottom: 1px solid rgba($disabled, 0.5);
+
+                &:nth-child(1) {
+                    display: block;
+                }
+            }
         }
     }
 }
