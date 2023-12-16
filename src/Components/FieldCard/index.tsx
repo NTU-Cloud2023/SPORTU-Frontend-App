@@ -4,21 +4,22 @@ import { textMap } from '../../i18n/textMap';
 import { FieldAPIResponse } from '../../API/APIInterface';
 import { useNavigate } from 'react-router-dom';
 import getDistance from '../../utils/getDistance';
+import { UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 
 export interface FieldCardProps extends FieldAPIResponse {
     distance: number
 }
 
-const FieldCard = (props: FieldAPIResponse) => {
-    const [dist, setDist] = useState<number>(NaN);
+const FieldCard = (props: UpdatedFieldData) => {
+    // const [dist, setDist] = useState<number>(NaN);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        getDistance(
-            +props.longitude,
-            +props.latitude
-        ).then((d) => setDist(d));
-    }, []);
+    // useEffect(() => {
+    //     getDistance(
+    //         +props.longitude,
+    //         +props.latitude
+    //     ).then((d) => setDist(d));
+    // }, []);
 
     return (
         <div className="field-card">
@@ -26,7 +27,7 @@ const FieldCard = (props: FieldAPIResponse) => {
                 <div className="field-img-container">
                     <div className="distance-tag">
                         <div className="icon walking"></div>
-                        {dist}m
+                        {props.distance.distance || '--'}m({props.distance.duration / 60 || '--'}分鐘)
                     </div>
                     <div
                         className="field-img"

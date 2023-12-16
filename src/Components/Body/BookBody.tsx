@@ -14,6 +14,7 @@ import { FieldAPIResponse, SportAPIResponse } from '../../API/APIInterface';
 import TimePicker from '../TimePicker';
 import FieldCardPopUp from '../PopUp/FieldCardPopUp';
 import SelectSportInputBar from '../SelectInputBar/SelectSportInputBar';
+import axios from 'axios';
 
 
 const BookBody = () => {
@@ -24,12 +25,13 @@ const BookBody = () => {
     const [selectedTime, setSelectedTime] = useState<Date|null>(null);
     const [popUpStatus, setPopupStatus] = useState(false);
     const {
+        user,
         fields,
         sports,
         fetchSports,
         fetchingSports
     } = useContext(GlobDataContext);
-    const book = () => {
+    const book = async () => {
         const cks = {
             sport: true,
             date: true,
@@ -38,9 +40,10 @@ const BookBody = () => {
             field: true,
             match: true
         };
+
         if (selectedSport === undefined) cks.sport = false;
         if (selectedTime === null) cks.date = false;
-        else if (selectedTime.getTime() < new Date().getTime()) cks.overdue = false;
+        else if ((selectedTime.getTime() - new Date().getTime()) < -3600000) cks.overdue = false;
         else if (selectedTime.getTime() % 3600000 !== 0) cks.onHour = false;
         if (selectedField === undefined) cks.field = false;
         else if (selectedField?.ball_type.type !== selectedSport?.type) cks.match = false;
@@ -48,9 +51,25 @@ const BookBody = () => {
         if (Object.values(cks).includes(false)) {
             alert(`
 很抱歉，您輸入的資料有誤:
-${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選取運動時間\n'}${cks.overdue ? '' : '● 運動時間需選擇未來時間\n'}${cks.onHour ? '' : '● 運動時間需為整點\n'}${cks.field ? '' : '● 請選擇球場\n'}${cks.match ? '' : '● 所選的球場與球種不相同\n'}
+${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選取運動時間\n'}${cks.overdue ? '' : '● 該時間已無法預約\n'}${cks.onHour ? '' : '● 運動時間需為整點\n'}${cks.field ? '' : '● 請選擇球場\n'}${cks.match ? '' : '● 所選的球場與球種不相同\n'}
 請重新確認，如有問題請洽球場管理人員，謝謝
         `);
+        } else {
+            axios({
+                method: 'POST',
+                url: `https://admin.chillmonkey.tw/v1/spaces/${selectedField?.id}/reserve`,
+                data: {
+                    userId: user.data?.id,
+                    timestamp: selectedTime!.getTime() / 1000
+                }
+            }).then((r) => {
+                console.log(r);
+            }).catch((e) => {
+                console.log(e);
+            });
+
+            // const iter = selectedField?.eachtime;
+            // for (let i = 0; i < iter; i++) {}
         }
     };
 

@@ -36,10 +36,19 @@ const FieldDetailsBody = () => {
     return (
         <div className="field-details-body">
             <div className="wrapper">
-                <PillButton
-                    text={textMap.prev_page}
-                    onClick={() => navigate(-1)}
-                />
+                <div className="flex">
+                    <PillButton
+                        text={textMap.prev_page}
+                        onClick={() => navigate(-1)}
+                    />
+                    <div className="ml-auto">
+                        <PillButton
+                            text="立即導航"
+                            type="nav"
+                            onClick={() => window.open(fieldDetails?.nav_url, 'blank')}
+                        />
+                    </div>
+                </div>
 
                 <div className="field-img-container">
                     <div

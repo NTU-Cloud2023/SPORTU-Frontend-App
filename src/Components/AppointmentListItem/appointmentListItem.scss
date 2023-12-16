@@ -3,6 +3,7 @@
 .appointment-list-item {
     display: flex;
     align-items: center;
+    margin-top: -1px;
     padding: 0.5rem 30px;
     color: $content;
     border-top: 1px solid $disabled;
@@ -14,9 +15,5 @@
 
     .icon.add-calendar {
         margin-right: 0.8rem;
-    }
-
-    +.appointment-list-item {
-        border-top: 0;
     }
 }
