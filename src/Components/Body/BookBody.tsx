@@ -6,11 +6,10 @@ import Button from '../Button';
 import { textMap } from '../../i18n/textMap';
 import PillButton from '../PillButton';
 import Gap from '../Gap';
-import { GlobDataContext } from '../../Contexts/GlobDataProvider';
+import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCardM from '../FieldCardM';
-import SelectInputBar from '../SelectInputBar';
 import SelectableInputBar from '../SelectableInputBar';
-import { FieldAPIResponse, SportAPIResponse } from '../../API/APIInterface';
+import { SportAPIResponse } from '../../API/APIInterface';
 import TimePicker from '../TimePicker';
 import FieldCardPopUp from '../PopUp/FieldCardPopUp';
 import SelectSportInputBar from '../SelectInputBar/SelectSportInputBar';
@@ -20,8 +19,8 @@ import axios from 'axios';
 const BookBody = () => {
     const [openFieldListM, setOpenFieldListM] = useState(false);
     const [selectedSport, setSelectedSport] = useState<SportAPIResponse|undefined>(undefined);
-    const [selectedField, setSelectedField] = useState<FieldAPIResponse|undefined>(undefined);
-    const [popupField, setPopupField] = useState<FieldAPIResponse|undefined>(undefined);
+    const [selectedField, setSelectedField] = useState<UpdatedFieldData|undefined>(undefined);
+    const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<Date|null>(null);
     const [popUpStatus, setPopupStatus] = useState(false);
     const {
@@ -77,7 +76,7 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
         if (sports.length === 0 && fetchingSports === false) {
             fetchSports();
         }
-    }, [fields]);
+    }, []);
 
     useEffect(() => {
         if (selectedField !== undefined

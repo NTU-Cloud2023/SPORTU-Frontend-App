@@ -1,12 +1,12 @@
 import { FieldAPIResponse } from '../../API/APIInterface';
+import { UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCard from '../FieldCard';
-import SelectableFieldCard from '../FieldCard/SelectableFieldCard';
 import './popUp.scss';
 
 
 export interface FieldCardPopUpProps {
-    field: FieldAPIResponse,
-    setField: (f: FieldAPIResponse) => void,
+    field: UpdatedFieldData,
+    setField: (f: UpdatedFieldData) => void,
     closeSelection: () => void
     closePopup: () => void
 }
@@ -21,7 +21,7 @@ const FieldCardPopUp = ({
         <div className="field-card-pop-up">
             <div className="wrapper">
                 <div className="card-container">
-                    <SelectableFieldCard
+                    <FieldCard
                         field={field}
                         onClick={() => {
                             setField(field);

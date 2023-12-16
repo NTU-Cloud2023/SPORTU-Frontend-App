@@ -17,7 +17,7 @@ const NearByBody = () => {
         if (fields.length === 0 && fetchingFields === false) {
             fetchFields();
         }
-    }, [fields]);
+    }, []);
 
     return (
         <div className="field-list-body">
@@ -27,7 +27,7 @@ const NearByBody = () => {
                 {
                     fields.map((field) => (
                         <FieldCard
-                            {...field}
+                            field={{...field}}
                             key={field.id}
                         />
                     ))

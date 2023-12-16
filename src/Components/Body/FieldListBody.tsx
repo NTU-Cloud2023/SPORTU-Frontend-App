@@ -19,7 +19,7 @@ const FieldListBody = () => {
         if (fields.length === 0 && fetchingFields === false) {
             fetchFields();
         }
-    }, [fields]);
+    }, []);
 
     return (
         <div className="field-list-body">
@@ -42,8 +42,8 @@ const FieldListBody = () => {
                 {
                     fields.map((field) => (
                         <FieldCard
-                            {...field}
-                            key={field.id}
+                            field={{...field}}
+                            key={`field_list_body_${field.id}`}
                         />
                     ))
                 }

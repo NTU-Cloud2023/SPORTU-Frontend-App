@@ -23,6 +23,7 @@ export const GlobDataContext = React.createContext(
         fetchingSports: false,
         fetchFields: () => {},
         fetchingFields: false,
+        updateField: (field: UpdatedFieldData) => {},
         fetchUser: (account: string) => (new Promise<UserAPIResponse>(() => {})),
         fetchingUser: false
     }
@@ -55,39 +56,22 @@ const GlobDataProvider = ({ children }:{
         }).finally(() => setFetchingSports(false));
     };
 
-    const updateFields = async (fields: UpdatedFieldData[]) => {
+    const updateField = async (field: UpdatedFieldData) => {
         const location = await getCurrentCoords();
-        // const promises: Promise<AxiosResponse<DistanceAPIResponse>>[] = [];
-        for (let i = 0; i < fields.length; i++) {
-            const field = fields[i];
-            const res = await axios<DistanceAPIResponse>({
-                method: 'GET',
-                url: `https://admin.chillmonkey.tw/v1/spaces/${field.id}/distance?lat=${location.latitude}&lng=${location.longitude}`
-            });
-            setFields((_fields) => {
-                _fields[i] = {
-                    ..._fields[i],
-                    distance: res.data
-                };
-                return _fields;
-            });
-            // promises.push(axios<DistanceAPIResponse>({
-            //     method: 'GET',
-            //     url: `https://admin.chillmonkey.tw/v1/spaces/${field.id}/distance?lat=${location.latitude}&lng=${location.longitude}`
-            // }));
-        }
-        // Promise.all(promises).then((responses) => {
-        //     responses.forEach((res, idx) => {
-        //         updatedFields[idx].distance = res.data;
-        //     });
-        //     setFields(updatedFields);
-        //     setFetchingFields(false);
-        // });
+        const res = await axios<DistanceAPIResponse>({
+            method: 'GET',
+            url: `https://admin.chillmonkey.tw/v1/spaces/${field.id}/distance?lat=${location.latitude}&lng=${location.longitude}`
+        });
+        await delay(Math.random() * 500);
+        setFields((_fields) => {
+            const idx = _fields.findIndex((f) => f.id === field.id);
+            _fields[idx].distance = res.data;
+            return [..._fields];
+        });
     };
 
     const fetchFields = async () => {
         if (fetchingFields === true) return;
-        console.log('1');
 
         setFetchingFields(true);
 
@@ -101,7 +85,6 @@ const GlobDataProvider = ({ children }:{
                 distance: {distance: NaN, duration: NaN}
             }));
             setFields(updatedFields);
-            await updateFields(updatedFields);
         }).finally(() => {
             setFetchingFields(false);
         });
@@ -140,6 +123,7 @@ const GlobDataProvider = ({ children }:{
                 fetchSports,
                 fetchingSports,
                 fetchFields,
+                updateField,
                 fetchingFields,
                 fetchUser,
                 fetchingUser
