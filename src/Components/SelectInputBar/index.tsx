@@ -8,7 +8,6 @@ export interface SelectOption {
 
 export interface SelectInputBarProps {
     options: SelectOption[],
-    value: string,
     setValue: (s: string) => void
 }
 

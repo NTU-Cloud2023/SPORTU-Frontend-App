@@ -4,6 +4,8 @@ export interface BallType {
     cht_game_name: string
 }
 
+export type SportAPIResponse = BallType
+
 export interface FieldAPIResponse {
     id: number,
     name: string,
@@ -34,5 +36,3 @@ export interface UserAPIResponse {
     success: boolean,
     data: UserData | undefined
 }
-
-export type SportAPIResponse = BallType

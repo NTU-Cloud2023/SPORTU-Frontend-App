@@ -3,7 +3,7 @@
 .book-body {
     background-color: $dark;
 
-    .wrapper {
+    > .wrapper {
         padding: 0 15% 8rem;
         background-image: url("../../assets/images/field-bg.png");
         background-position: top center;

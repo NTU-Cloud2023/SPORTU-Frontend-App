@@ -3,7 +3,7 @@
 .appointment-body {
     background-color: $dark;
 
-    .wrapper {
+    > .wrapper {
         padding: 30px 30px 1px;
 
         .appointment-list {
