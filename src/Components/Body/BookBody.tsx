@@ -15,7 +15,6 @@ import FieldCardPopUp from '../PopUp/FieldCardPopUp';
 import SelectSportInputBar from '../SelectInputBar/SelectSportInputBar';
 import axios from 'axios';
 
-
 const BookBody = () => {
     const [openFieldListM, setOpenFieldListM] = useState(false);
     const [selectedSport, setSelectedSport] = useState<SportAPIResponse|undefined>(undefined);
@@ -23,6 +22,7 @@ const BookBody = () => {
     const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<Date|null>(null);
     const [popUpStatus, setPopupStatus] = useState(false);
+
     const {
         user,
         fields,
