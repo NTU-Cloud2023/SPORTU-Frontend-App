@@ -12,7 +12,9 @@ const FieldDetailsBody = () => {
         fields,
         fetchingFields,
         fetchFields,
-        updateField
+        updateField,
+        googleMapAPIKey,
+        fetchGoogleMapAPIKey
     } = useContext(GlobDataContext);
     const [fieldDetails, setFieldDetails] = useState<UpdatedFieldData|undefined>(undefined);
 
@@ -35,6 +37,12 @@ const FieldDetailsBody = () => {
             fetchFields();
         }
     }, []);
+
+    useEffect(() => {
+        if (googleMapAPIKey === undefined) {
+            fetchGoogleMapAPIKey();
+        }
+    }, [googleMapAPIKey]);
 
     return (
         <div className="field-details-body">
@@ -116,15 +124,19 @@ const FieldDetailsBody = () => {
                 <div className="sub-title">
                     地圖資訊
                 </div>
-                <div className="iframe-container">
-                    <iframe
-                        title="場館位置"
-                        width="100%"
-                        height="400"
-                        src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&q=${fieldDetails?.latitude},${fieldDetails?.longitude}&zoom=15`}
-                    >
-                    </iframe>
-                </div>
+                {
+                    googleMapAPIKey ? (
+                        <div className="iframe-container">
+                            <iframe
+                                title="場館位置"
+                                width="100%"
+                                height="400"
+                                src={`https://www.google.com/maps/embed/v1/place?key=${googleMapAPIKey}&q=${fieldDetails?.latitude},${fieldDetails?.longitude}&zoom=15`}
+                            >
+                            </iframe>
+                        </div>
+                    ) : ''
+                }
             </div>
         </div>
     );

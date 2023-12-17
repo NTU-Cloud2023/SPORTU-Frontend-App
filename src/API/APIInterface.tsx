@@ -73,3 +73,7 @@ export interface OrderAPIResponse {
     message: string,
     data: OrderData
 }
+
+export interface GoogleMapKeyAPIResponse {
+    api_key: string
+}
