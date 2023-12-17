@@ -10,6 +10,7 @@ type PageName =
     'register-success' | // 註冊成功
     'home' | // 首頁
     'book' | // 開始預約
+    'book-success' | // 預約成功
     'field-list' | // 球場資訊
     'field-map' | // 附近球場
     'book__field-map' | // 開始預約>選擇球場>球場地圖
@@ -34,6 +35,7 @@ type LayoutColors = 'primary' |
 'dark' |
 'dark-2' |
 'info' |
+'blue' |
 'danger' |
 'warning' |
 'disabled'

@@ -3,18 +3,18 @@ import { textMap } from '../../i18n/textMap';
 import PillButton from '../PillButton';
 import './fieldDetailsBody.scss';
 import { useContext, useEffect, useState } from 'react';
-import { GlobDataContext } from '../../Contexts/GlobDataProvider';
-import { FieldAPIResponse } from '../../API/APIInterface';
-import { getDistance } from '../../utils';
+import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 
 const FieldDetailsBody = () => {
     const navigate = useNavigate();
     const param = useParams();
     const {
-        fields
+        fields,
+        fetchingFields,
+        fetchFields,
+        updateField
     } = useContext(GlobDataContext);
-    const [fieldDetails, setFieldDetails] = useState<FieldAPIResponse|undefined>(undefined);
-    const [dist, setDist] = useState<number>(NaN);
+    const [fieldDetails, setFieldDetails] = useState<UpdatedFieldData|undefined>(undefined);
 
     useEffect(() => {
         if (param.id === undefined) navigate(-1);
@@ -25,21 +25,33 @@ const FieldDetailsBody = () => {
     }, [fields]);
 
     useEffect(() => {
-        if (fieldDetails !== undefined) {
-            getDistance(
-                +fieldDetails.longitude,
-                +fieldDetails.latitude
-            ).then((d) => setDist(d));
+        if (fieldDetails && isNaN(fieldDetails.distance.distance)) {
+            updateField(fieldDetails);
         }
     }, [fieldDetails]);
+
+    useEffect(() => {
+        if (fields.length === 0 && fetchingFields === false) {
+            fetchFields();
+        }
+    }, []);
 
     return (
         <div className="field-details-body">
             <div className="wrapper">
-                <PillButton
-                    text={textMap.prev_page}
-                    onClick={() => navigate(-1)}
-                />
+                <div className="flex">
+                    <PillButton
+                        text={textMap.prev_page}
+                        onClick={() => navigate(-1)}
+                    />
+                    <div className="ml-auto">
+                        <PillButton
+                            text="立即導航"
+                            type="nav"
+                            onClick={() => window.open(fieldDetails?.nav_url, 'blank')}
+                        />
+                    </div>
+                </div>
 
                 <div className="field-img-container">
                     <div
@@ -66,19 +78,41 @@ const FieldDetailsBody = () => {
                 <div className="default-content">
                     使用人數上限: {fieldDetails?.capacity}
                 </div>
+
                 <div className="default-content">
-                    當前距離: {dist} 公尺
+                    當前距離:&nbsp;
+                    {
+                        fieldDetails && !isNaN(fieldDetails.distance.distance) ? (
+                            <span>
+                                {fieldDetails?.distance.distance} 公尺
+                            </span>
+                        ) : (
+                            <div className="icon loading"></div>
+                        )
+                    }
                 </div>
                 <div className="default-content">
+                    導航時間:&nbsp;
+                    {
+                        fieldDetails && !isNaN(fieldDetails.distance.distance) ? (
+                            <span>
+                                {Math.ceil(fieldDetails?.distance.duration / 60)} 分鐘
+                            </span>
+                        ) : (
+                            <div className="icon loading"></div>
+                        )
+                    }
+                </div>
+                {/* <div className="default-content">
                     單場區間: {fieldDetails?.eachtime} 小時
-                    {/* <span className="disabled">廠商未提供</span> */}
-                </div>
-                <div className="sub-title">
+                    <span className="disabled">廠商未提供</span>
+                </div> */}
+                {/* <div className="sub-title">
                     該場地兩週內可預約時段
                 </div>
                 <div className="default-content">
                     <span className="disabled">廠商未提供</span>
-                </div>
+                </div> */}
                 <div className="sub-title">
                     地圖資訊
                 </div>

@@ -8,6 +8,7 @@ $input: #c3c3c3;
 $dark: #1d1e20;
 $dark-2: #37383a;
 $info: #009dff;
+$blue: #06418f;
 $danger: #aa2929;
 $warning: #f7ff00;
 $disabled: #707070;
@@ -48,9 +49,15 @@ $notification-cancel-height: 67px;
 // ======================================
 // z-indexes
 // ======================================
+$background-z: 0;
 $page: 10;
 $page-cover: 20;
 $page-cover-2: 21;
-$header-z: 50;
-$popup-z: 60;
-$background-z: 0;
+$popup-z: 50;
+$header-z: 60;
+$cover-z: 70;
+
+// ======================================
+// animation
+// ======================================
+$transition: 0.2s;

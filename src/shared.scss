@@ -38,7 +38,7 @@
     &.walking {
         margin-top: -0.3rem;
         width: 1rem;
-        height: 1rem;
+        height: 1.6rem;
         background-image: url("./assets/images/icon/walking-man.png");
         background-position: bottom right;
         background-size: 66% 66%;
@@ -54,9 +54,34 @@
         background-size: 100% 100%;
     }
 
+    &.loading {
+        background-image: url("./assets/images/icon/loading.gif");
+        background-size: 100% 100%;
+    }
+
+    &.cancel {
+        background-image: url("./assets/images/icon/cancel.svg");
+        background-size: 100% 100%;
+    }
+
     &.lg {
         width: 1.4rem;
         height: 1.4rem;
+    }
+
+    &.xl {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    &.xxl {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    &.running-ball {
+        background-image: url("./assets/images/icon/running_ball.gif");
+        background-size: 100% 100%;
     }
 }
 
@@ -67,5 +92,35 @@
     &.disabled,
     .disabled {
         color: $disabled;
+    }
+}
+
+@keyframes slide-in__right {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in__left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

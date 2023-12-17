@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Cancel } from '../../assets/images/icon/cancel.svg';
 import './menu.scss';
+import { useContext } from 'react';
+import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 
 type MenuProps = {
     handleCloseMenu: () => void;
@@ -8,6 +10,7 @@ type MenuProps = {
 
 const Menu = (props: MenuProps) => {
     const navigate = useNavigate();
+    const { doLogout } = useContext(GlobDataContext);
     const handleShowHomePage = () => {
         navigate('/home');
     };
@@ -29,6 +32,7 @@ const Menu = (props: MenuProps) => {
     };
 
     const handleLogout = () => {
+        doLogout();
         navigate('/login');
     };
 

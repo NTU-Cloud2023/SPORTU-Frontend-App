@@ -5,7 +5,8 @@
 
     .card-body {
         margin-bottom: 1rem;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem;
+        background-color: $dark;
         border-radius: 1rem;
         box-shadow:
             -2px -2px 5px rgba(255, 255, 255, 0.2),
@@ -14,23 +15,26 @@
         .status-container {
             display: flex;
             justify-content: flex-end;
+        }
 
-            .text-pill {
-                margin: 0 0.3rem;
-                padding: 0.2rem 0.5rem;
-                font-size: 1rem;
-                text-align: center;
-                border-radius: 0.8rem;
+        .text-pill {
+            margin: 0 0.3rem;
+            padding: 0.2rem 0.5rem;
+            text-align: center;
+            border-radius: 0.8rem;
 
-                &.dark {
-                    background-color: $dark-2;
-                }
+            &.dark {
+                background-color: $dark-2;
+            }
 
-                &.primary {
-                    font-weight: bold;
-                    color: $dark;
-                    background-color: $secondary;
-                }
+            &.primary {
+                font-weight: bold;
+                color: $dark;
+                background-color: $secondary;
+            }
+
+            &.blue {
+                background-color: $blue;
             }
         }
     }

@@ -44,12 +44,12 @@ const Menu = (props: MenuProps) => {
             >
                 球場資訊
             </button>
-            <button
+            {/* <button
                 className="menu-sign-in"
                 onClick={props.handleSignIn}
             >
                 報到
-            </button>
+            </button> */}
             <button
                 className="menu-log-out"
                 onClick={props.handleLogout}

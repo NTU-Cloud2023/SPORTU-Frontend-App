@@ -1,8 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './login.scss';
 import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
     const [account, setAccount] = useState('');
@@ -12,11 +13,30 @@ const Login = () => {
         fetchingUser
     } = useContext(GlobDataContext);
     const navigate = useNavigate();
-    const handleLogin = () => {
+    const handleLogin = (acc?: string, rememberCheck=true) => {
         if (fetchingUser === false) {
-            fetchUser(account).then(() => navigate('/home'));
+            fetchUser(acc || account).then((user) => {
+                if (rememberCheck) {
+                    const res = confirm(`
+    ${user.data?.nick_name} 您好
+    是否要記住您的登入資訊？`);
+                    if (res) {
+                        localStorage.setItem('SPORTU_USER_ACCOUNT', account);
+                    }
+                }
+                navigate('/home');
+            }).catch(() => {
+                localStorage.removeItem('SPORTU_USER_ACCOUNT');
+            });
         }
     };
+
+    useEffect(() => {
+        const local_account = localStorage.getItem('SPORTU_USER_ACCOUNT');
+        if (local_account !== null) {
+            handleLogin(local_account, false);
+        }
+    }, []);
 
     return (
         <div className="login">
@@ -44,7 +64,7 @@ const Login = () => {
             <button
                 className="login-login"
                 type="button"
-                onClick={handleLogin}
+                onClick={() => handleLogin()}
             >
                 登入
             </button>

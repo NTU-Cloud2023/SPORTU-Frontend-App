@@ -15,6 +15,7 @@ import BookFieldList from './Pages/Book/FieldList';
 import CheckIn from './Pages/CheckIn';
 import Appointments from './Pages/Appointments';
 import FieldDetails from './Pages/FieldDetails';
+import BookSuccess from './Pages/BookSuccess';
 
 const Router = () => {
     return (
@@ -53,6 +54,11 @@ const Router = () => {
                         path="field-list"
                         element={<BookFieldList />}
                     />
+                </Route>
+                <Route
+                    path="/book-success"
+                    element={<BookSuccess />}
+                >
                 </Route>
                 <Route
                     path="/field-list"

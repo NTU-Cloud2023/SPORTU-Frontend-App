@@ -34,13 +34,22 @@ const Pager = (props: PagerProps) => {
     };
 
     const {
-        user
+        user,
+        fetchUser
     } = useContext(GlobDataContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (user.success === false || !user.data?.id) {
-            navigate('/login');
+            const local_account = localStorage.getItem('SPORTU_USER_ACCOUNT');
+            if (local_account !== null) {
+                fetchUser(local_account).catch(() => {
+                    localStorage.removeItem('SPORTU_USER_ACCOUNT');
+                    navigate('/login');
+                });
+            } else {
+                navigate('/login');
+            }
         }
     }, []);
 
