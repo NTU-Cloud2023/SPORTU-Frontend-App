@@ -1,15 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import './fieldMapBody.scss';
-import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import GoogleMap from 'google-maps-react-markers';
 import { defaultCoords } from '../../utils/getCurrentCoords';
 import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCardPopUpReadOnly from '../PopUp/FieldCardPopUpReadOnly';
 
-
-const mapContainerStyle = {
-    width: '100vw',
-    height: 'calc(100vh - 67px)'
-};
 
 const FieldMapBody = () => {
     const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
@@ -20,10 +15,6 @@ const FieldMapBody = () => {
         fetchingFields,
         updateField
     } = useContext(GlobDataContext);
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY || '',
-        libraries: ['places']
-    });
 
     useEffect(() => {
         if (fields.length === 0 && fetchingFields === false) {
@@ -39,36 +30,43 @@ const FieldMapBody = () => {
         });
     }, [fields]);
 
+    const AnyReactComponent = (props: any) => (
+        <div onClick={props.onClick}>
+            <div
+                className="d-block icon pin xl full mr-0"
+                style={{
+                    transform: 'translate(-50%, -100%)'
+                }}
+            >
+            </div>
+        </div>
+    );
+
     return (
         <div className="map-body">
-            {
-                isLoaded ? (
-                    <GoogleMap
-                        mapContainerStyle={mapContainerStyle}
-                        zoom={15}
-                        center={{
-                            lat: defaultCoords.latitude,
-                            lng: defaultCoords.longitude
-                        }}
-                    >
-                        {
-                            fields.map((f, idx) => (
-                                <Marker
-                                    position={{
-                                        lat: +f.latitude,
-                                        lng: +f.longitude
-                                    }}
-                                    onClick={() => {
-                                        setPopupField(f);
-                                        setPopupStatus(true);
-                                    }}
-                                    key={`field_map_marker_${idx}`}
-                                />
-                            ))
-                        }
-                    </GoogleMap>
-                ) : ''
-            }
+            <GoogleMap
+                apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+                defaultZoom={15}
+                mapMinHeight="calc(100vh - 67px)"
+                defaultCenter={{
+                    lat: defaultCoords.latitude,
+                    lng: defaultCoords.longitude
+                }}
+            >
+                {
+                    fields.map((f, idx) => (
+                        <AnyReactComponent
+                            lat={+f.latitude}
+                            lng={+f.longitude}
+                            onClick={() => {
+                                setPopupField(f);
+                                setPopupStatus(true);
+                            }}
+                            key={`field_map_marker_${idx}`}
+                        />
+                    ))
+                }
+            </GoogleMap>
 
             {
                 (popUpStatus && popupField) ? (
