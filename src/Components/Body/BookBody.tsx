@@ -17,6 +17,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { delay } from '../../utils';
 import Cover from '../Cover';
+import SortFieldsPopUp from '../PopUp/SortFieldsPopUp';
 
 const BookBody = () => {
     const [openFieldListM, setOpenFieldListM] = useState(false);
@@ -25,6 +26,8 @@ const BookBody = () => {
     const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<Date|null>(null);
     const [popUpStatus, setPopupStatus] = useState(false);
+    const [openSort, setOpenSort] = useState(false);
+    const [selectedSportType, setSelectedSportType] = useState('all');
     const [fetching, setFetching] = useState(false);
     const navigate = useNavigate();
 
@@ -99,6 +102,9 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
             && selectedField.ball_type.type !== selectedSport?.type) {
             setSelectedField(undefined);
         }
+        if (selectedSport !== undefined) {
+            setSelectedSportType(selectedSport?.game_name);
+        }
     }, [selectedSport]);
 
     return (
@@ -146,7 +152,7 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                                 <PillButton
                                     text={textMap.sorted_by}
                                     type="control"
-                                    onClick={() => {}}
+                                    onClick={() => setOpenSort(true)}
                                 />
                             </div>
                         </div>
@@ -154,17 +160,22 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                         <div className="scroll-area">
                             {
                                 fields.map((f) => (
-                                    <div
-                                        onClick={() => {
-                                            setPopupField(f);
-                                            setPopupStatus(true);
-                                        }}
-                                        key={`field-card-m-${f.id}`}
-                                    >
-                                        <FieldCardM {...f} />
-                                    </div>
+                                    f.ball_type.game_name === selectedSportType ? (
+                                        <div
+                                            onClick={() => {
+                                                setPopupField(f);
+                                                setPopupStatus(true);
+                                            }}
+                                            key={`field-card-m-${f.id}`}
+                                        >
+                                            <FieldCardM {...f} />
+                                        </div>
+                                    ) : ''
                                 ))
                             }
+                            <div className="empty-check">
+                                沒有符合條件的球場
+                            </div>
                         </div>
                     </div>
                 ) : ''
@@ -185,6 +196,18 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                 fetching ? (
                     <Cover />
                 ) : ''
+            }
+
+            {
+                openSort
+                    ? (
+                        <SortFieldsPopUp
+                            selectedSport={selectedSportType}
+                            setSelectedSport={setSelectedSportType}
+                            closePopup={() => setOpenSort(false)}
+                            filter={false}
+                        />
+                    ) : ''
             }
         </div>
     );

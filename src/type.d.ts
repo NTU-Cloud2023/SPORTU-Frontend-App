@@ -35,6 +35,7 @@ type LayoutColors = 'primary' |
 'dark' |
 'dark-2' |
 'info' |
+'blue' |
 'danger' |
 'warning' |
 'disabled'

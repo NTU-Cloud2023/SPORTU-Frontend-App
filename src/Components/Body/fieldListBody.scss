@@ -5,5 +5,14 @@
 
     > .wrapper {
         padding: 0 20px 1px;
+
+        .empty-check {
+            display: none;
+
+            &:nth-child(2) {
+                display: block;
+                color: $disabled;
+            }
+        }
     }
 }

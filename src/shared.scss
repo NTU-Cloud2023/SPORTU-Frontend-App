@@ -59,12 +59,22 @@
         background-size: 100% 100%;
     }
 
+    &.cancel {
+        background-image: url("./assets/images/icon/cancel.svg");
+        background-size: 100% 100%;
+    }
+
     &.lg {
         width: 1.4rem;
         height: 1.4rem;
     }
 
     &.xl {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    &.xxl {
         width: 8rem;
         height: 8rem;
     }

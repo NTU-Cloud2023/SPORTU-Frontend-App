@@ -14,6 +14,8 @@ export interface UpdatedFieldData extends FieldAPIResponse {
     distance: DistanceAPIResponse
 }
 
+export type SortTypes = 'id' | 'distance' | 'time'
+
 export const GlobDataContext = React.createContext(
     {
         sports: [] as SportAPIResponse[],
@@ -26,7 +28,8 @@ export const GlobDataContext = React.createContext(
         updateField: (field: UpdatedFieldData) => {},
         fetchUser: (account: string) => (new Promise<UserAPIResponse>(() => {})),
         fetchingUser: false,
-        doLogout: () => {}
+        doLogout: () => {},
+        sortFields: (by: SortTypes) => {}
     }
 );
 
@@ -39,6 +42,21 @@ const GlobDataProvider = ({ children }:{
     const [fetchingSports, setFetchingSports] = useState(false);
     const [fetchingFields, setFetchingFields] = useState(false);
     const [fetchingUser, setFetchingUser] = useState(false);
+
+    const sortFields = (by: SortTypes) => {
+        const sorted: UpdatedFieldData[] = [...fields];
+        sorted.sort((a, b) => {
+            if (by === 'distance') {
+                return (a.distance.distance - b.distance.distance);
+            } else if (by === 'time') {
+                return (a.distance.duration - b.distance.duration);
+            } else if (by === 'id') {
+                return (a.id - b.id);
+            }
+            return 0;
+        });
+        setFields([...sorted]);
+    };
 
     const fetchSports = () => {
         if (fetchingSports === true) return;
@@ -133,7 +151,8 @@ const GlobDataProvider = ({ children }:{
                 fetchingFields,
                 fetchUser,
                 fetchingUser,
-                doLogout
+                doLogout,
+                sortFields
             }}
         >
             {children}

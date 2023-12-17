@@ -33,7 +33,16 @@
 
     .scroll-area {
         overflow-y: auto;
-        padding: 30px;
+        padding: 10px 30px;
         height: calc(100vh - 100px - 3rem);
+
+        .empty-check {
+            display: none;
+
+            &:nth-child(1) {
+                display: block;
+                color: $disabled;
+            }
+        }
     }
 }
