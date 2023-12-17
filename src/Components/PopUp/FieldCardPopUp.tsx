@@ -1,4 +1,3 @@
-import { FieldAPIResponse } from '../../API/APIInterface';
 import { UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCard from '../FieldCard';
 import './popUp.scss';

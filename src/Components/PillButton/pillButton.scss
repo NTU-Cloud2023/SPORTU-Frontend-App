@@ -9,5 +9,29 @@
         box-shadow:
             -2px -2px 5px rgba(255, 255, 255, 0.2),
             3px 3px 3px rgba(0, 0, 0, 0.8);
+
+        &.dark {
+            background-color: $dark-2;
+        }
+
+        &.primary {
+            font-weight: bolder;
+            color: $dark;
+            background-color: $secondary;
+        }
+
+        &.blue {
+            color: $content;
+            background-color: $blue;
+        }
+
+        &.disabled {
+            color: $content;
+            background-color: $disabled;
+        }
+
+        &.no-shadow {
+            box-shadow: none;
+        }
     }
 }

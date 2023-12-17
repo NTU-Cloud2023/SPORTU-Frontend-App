@@ -1,9 +1,7 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef } from 'react';
 import './fieldCard.scss';
 import { textMap } from '../../i18n/textMap';
-import { FieldAPIResponse } from '../../API/APIInterface';
 import { useNavigate } from 'react-router-dom';
-import getDistance from '../../utils/getDistance';
 import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import useOnScreen from '../../Hooks/useOnScreen';
 import distanceFormat from '../../utils/distanceFormat';
@@ -77,13 +75,17 @@ const FieldCard = ({
                     <div className="text-pill dark">
                         使用人數{field.headcount}/{field.capacity}
                     </div>
-                    <div
-                        className="text-pill primary"
-                        onClick={() => navigate('/field-details/' + field.id)}
-                    >
+                    {
+                        onClick === undefined ? (
+                            <div
+                                className="text-pill primary"
+                                onClick={() => navigate('/field-details/' + field.id)}
+                            >
 
-                        {textMap.detailed_information}
-                    </div>
+                                {textMap.detailed_information}
+                            </div>
+                        ) : ''
+                    }
                 </div>
 
                 <div className="field-title">

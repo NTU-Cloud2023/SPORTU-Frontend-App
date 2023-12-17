@@ -49,9 +49,15 @@ $notification-cancel-height: 67px;
 // ======================================
 // z-indexes
 // ======================================
+$background-z: 0;
 $page: 10;
 $page-cover: 20;
 $page-cover-2: 21;
-$header-z: 50;
-$popup-z: 60;
-$background-z: 0;
+$popup-z: 50;
+$header-z: 60;
+$cover-z: 70;
+
+// ======================================
+// animation
+// ======================================
+$transition: 0.2s;

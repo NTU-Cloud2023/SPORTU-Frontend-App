@@ -1,19 +1,21 @@
-import { Dispatch, useContext, useEffect, useMemo, useState } from 'react';
-import InputBar from '../InputBar';
+import { useContext, useEffect, useState } from 'react';
 import BodyTitle from '../Title/BodyTitle';
 import './bookBody.scss';
 import Button from '../Button';
 import { textMap } from '../../i18n/textMap';
 import PillButton from '../PillButton';
-import Gap from '../Gap';
 import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCardM from '../FieldCardM';
 import SelectableInputBar from '../SelectableInputBar';
-import { SportAPIResponse } from '../../API/APIInterface';
+import { OrderAPIResponse, SportAPIResponse } from '../../API/APIInterface';
 import TimePicker from '../TimePicker';
 import FieldCardPopUp from '../PopUp/FieldCardPopUp';
 import SelectSportInputBar from '../SelectInputBar/SelectSportInputBar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { delay } from '../../utils';
+import Cover from '../Cover';
+import SortFieldsPopUp from '../PopUp/SortFieldsPopUp';
 
 const BookBody = () => {
     const [openFieldListM, setOpenFieldListM] = useState(false);
@@ -22,6 +24,10 @@ const BookBody = () => {
     const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<Date|null>(null);
     const [popUpStatus, setPopupStatus] = useState(false);
+    const [openSort, setOpenSort] = useState(false);
+    const [selectedSportType, setSelectedSportType] = useState('all');
+    const [fetching, setFetching] = useState(false);
+    const navigate = useNavigate();
 
     const {
         user,
@@ -31,6 +37,9 @@ const BookBody = () => {
         fetchingSports
     } = useContext(GlobDataContext);
     const book = async () => {
+        if (fetching) return;
+        setFetching(true);
+
         const cks = {
             sport: true,
             date: true,
@@ -54,7 +63,9 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
 請重新確認，如有問題請洽球場管理人員，謝謝
         `);
         } else {
-            axios({
+            await delay(Math.random() * 1000);
+
+            axios<OrderAPIResponse>({
                 method: 'POST',
                 url: `https://admin.chillmonkey.tw/v1/spaces/${selectedField?.id}/reserve`,
                 data: {
@@ -62,10 +73,16 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                     timestamp: selectedTime!.getTime() / 1000
                 }
             }).then((r) => {
-                console.log(r);
+                console.log(r.data.data.nickName);
+                navigate('/book-success', {
+                    state: {
+                        field: selectedField,
+                        timestamp: r.data.data.timestamp
+                    }
+                });
             }).catch((e) => {
                 console.log(e);
-            });
+            }).finally(() => setFetching(false));
 
             // const iter = selectedField?.eachtime;
             // for (let i = 0; i < iter; i++) {}
@@ -82,6 +99,9 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
         if (selectedField !== undefined
             && selectedField.ball_type.type !== selectedSport?.type) {
             setSelectedField(undefined);
+        }
+        if (selectedSport !== undefined) {
+            setSelectedSportType(selectedSport?.game_name);
         }
     }, [selectedSport]);
 
@@ -130,7 +150,7 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                                 <PillButton
                                     text={textMap.sorted_by}
                                     type="control"
-                                    onClick={() => {}}
+                                    onClick={() => setOpenSort(true)}
                                 />
                             </div>
                         </div>
@@ -138,17 +158,22 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                         <div className="scroll-area">
                             {
                                 fields.map((f) => (
-                                    <div
-                                        onClick={() => {
-                                            setPopupField(f);
-                                            setPopupStatus(true);
-                                        }}
-                                        key={`field-card-m-${f.id}`}
-                                    >
-                                        <FieldCardM {...f} />
-                                    </div>
+                                    f.ball_type.game_name === selectedSportType ? (
+                                        <div
+                                            onClick={() => {
+                                                setPopupField(f);
+                                                setPopupStatus(true);
+                                            }}
+                                            key={`field-card-m-${f.id}`}
+                                        >
+                                            <FieldCardM {...f} />
+                                        </div>
+                                    ) : ''
                                 ))
                             }
+                            <div className="empty-check">
+                                沒有符合條件的球場
+                            </div>
                         </div>
                     </div>
                 ) : ''
@@ -163,6 +188,24 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                         closePopup={() => setOpenFieldListM(false)}
                     />
                 ) : ''
+            }
+
+            {
+                fetching ? (
+                    <Cover />
+                ) : ''
+            }
+
+            {
+                openSort
+                    ? (
+                        <SortFieldsPopUp
+                            selectedSport={selectedSportType}
+                            setSelectedSport={setSelectedSportType}
+                            closePopup={() => setOpenSort(false)}
+                            filter={false}
+                        />
+                    ) : ''
             }
         </div>
     );
