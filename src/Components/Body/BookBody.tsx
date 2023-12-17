@@ -141,16 +141,17 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                                     text={textMap.prev_page}
                                     onClick={() => setOpenFieldListM(false)}
                                 />
-                                <PillButton
+                                {/* <PillButton
                                     text={textMap.map_preview}
                                     type="map"
                                     onClick={() => {}}
                                     style={{margin: '0 1rem 0 auto'}}
-                                />
+                                /> */}
                                 <PillButton
                                     text={textMap.sorted_by}
                                     type="control"
                                     onClick={() => setOpenSort(true)}
+                                    style={{margin: '0 1rem 0 auto'}}
                                 />
                             </div>
                         </div>
