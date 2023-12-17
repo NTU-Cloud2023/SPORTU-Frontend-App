@@ -1,5 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { GlobDataContext } from '../../Contexts/GlobDataProvider';
+import { useEffect, useMemo, useState } from 'react';
 import { SportAPIResponse } from '../../API/APIInterface';
 import SelectInputBar, { SelectOption } from '.';
 

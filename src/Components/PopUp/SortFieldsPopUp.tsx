@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { FieldAPIResponse } from '../../API/APIInterface';
-import { GlobDataContext, SortTypes, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
-import FieldCard from '../FieldCard';
+import { GlobDataContext, SortTypes } from '../../Contexts/GlobDataProvider';
 import './popUp.scss';
 import PillButton from '../PillButton';
 import Gap from '../Gap';

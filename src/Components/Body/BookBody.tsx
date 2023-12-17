@@ -1,11 +1,9 @@
-import { Dispatch, useContext, useEffect, useMemo, useState } from 'react';
-import InputBar from '../InputBar';
+import { useContext, useEffect, useState } from 'react';
 import BodyTitle from '../Title/BodyTitle';
 import './bookBody.scss';
 import Button from '../Button';
 import { textMap } from '../../i18n/textMap';
 import PillButton from '../PillButton';
-import Gap from '../Gap';
 import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCardM from '../FieldCardM';
 import SelectableInputBar from '../SelectableInputBar';

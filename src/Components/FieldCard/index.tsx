@@ -1,9 +1,7 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef } from 'react';
 import './fieldCard.scss';
 import { textMap } from '../../i18n/textMap';
-import { FieldAPIResponse } from '../../API/APIInterface';
 import { useNavigate } from 'react-router-dom';
-import getDistance from '../../utils/getDistance';
 import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import useOnScreen from '../../Hooks/useOnScreen';
 import distanceFormat from '../../utils/distanceFormat';

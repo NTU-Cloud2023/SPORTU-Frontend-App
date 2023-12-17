@@ -1,7 +1,7 @@
 import React, { useState, ReactElement } from 'react';
 import { DistanceAPIResponse, FieldAPIResponse, SportAPIResponse, UserAPIResponse } from '../API/APIInterface';
 import { apiResponseProxy } from '../API/apiResponseProxy';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import getCurrentCoords from '../utils/getCurrentCoords';
 import { delay } from '../utils';
 

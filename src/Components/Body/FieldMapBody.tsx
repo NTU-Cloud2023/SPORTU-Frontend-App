@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './fieldMapBody.scss';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { defaultCoords } from '../../utils/getCurrentCoords';
@@ -12,7 +12,6 @@ const mapContainerStyle = {
 };
 
 const FieldMapBody = () => {
-    const ref = useRef<HTMLDivElement>(null);
     const [popupField, setPopupField] = useState<UpdatedFieldData|undefined>(undefined);
     const [popUpStatus, setPopupStatus] = useState(false);
     const {
@@ -21,7 +20,7 @@ const FieldMapBody = () => {
         fetchingFields,
         updateField
     } = useContext(GlobDataContext);
-    const { isLoaded, loadError } = useLoadScript({
+    const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY || '',
         libraries: ['places']
     });
