@@ -25,7 +25,8 @@ export const GlobDataContext = React.createContext(
         fetchingFields: false,
         updateField: (field: UpdatedFieldData) => {},
         fetchUser: (account: string) => (new Promise<UserAPIResponse>(() => {})),
-        fetchingUser: false
+        fetchingUser: false,
+        doLogout: () => {}
     }
 );
 
@@ -114,6 +115,11 @@ const GlobDataProvider = ({ children }:{
         });
     }));
 
+    const doLogout = () => {
+        setUser(default_user);
+        localStorage.removeItem('SPORTU_USER_ACCOUNT');
+    };
+
     return (
         <GlobDataContext.Provider
             value={{
@@ -126,7 +132,8 @@ const GlobDataProvider = ({ children }:{
                 updateField,
                 fetchingFields,
                 fetchUser,
-                fetchingUser
+                fetchingUser,
+                doLogout
             }}
         >
             {children}

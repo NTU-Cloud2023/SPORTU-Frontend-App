@@ -1,14 +1,16 @@
 @import "../../variables";
 
 .notifications {
-    overflow: auto;
     position: fixed;
     top: 0;
     right: 0;
+    overflow: auto;
     width: 90vw;
     height: 100vh;
     background-color: $sportsman-background-color;
+    border-left: 1px solid $primary;
     z-index: $header-z;
+    animation: slide-in__right $transition ease-out;
 }
 
 .notifications-cancel {

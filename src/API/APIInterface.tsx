@@ -61,3 +61,15 @@ export interface DistanceAPIResponse {
     distance: number,
     duration: number
 }
+
+export interface OrderData {
+    nickName: string,
+    spaceId: string,
+    timestamp: number,
+    userId: number
+}
+
+export interface OrderAPIResponse {
+    message: string,
+    data: OrderData
+}

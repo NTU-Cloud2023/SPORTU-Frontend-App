@@ -19,7 +19,9 @@ interface UpdatedAppointment extends Appointment {
 const AppointmentsBody = () => {
     const {
         user,
-        fields
+        fields,
+        fetchingFields,
+        fetchFields
     } = useContext(GlobDataContext);
     const navigate = useNavigate();
     const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -45,13 +47,15 @@ const AppointmentsBody = () => {
     };
 
     useEffect(() => {
+        console.log('appointments updated');
         const current = new Date().getTime();
         const updated: UpdatedAppointment[] = [];
+        console.log(appointments);
         appointments.forEach((ap) => {
             const f = mapFieldDetails(+ap.CourtID);
             if (f !== undefined && ap.Status !== 'Failed') {
                 let status: AppointmentStatus = 'success';
-                if (+ap.Timestamp < current) status = 'finished';
+                if (+ap.Timestamp * 1000 < current) status = 'finished';
                 updated.push({
                     ...ap,
                     Timestamp: (+ap.Timestamp * 1000).toString(),
@@ -62,10 +66,21 @@ const AppointmentsBody = () => {
         });
         setUpdatedAppointments(updated);
         console.log(updated);
-    }, [appointments]);
+    }, [appointments, fields]);
 
     useEffect(() => {
-        fetchAppointments();
+        console.log('user check');
+        console.log(appointments);
+        console.log(user.success);
+        if (appointments.length === 0 && user.success) {
+            fetchAppointments();
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (fields.length === 0 && fetchingFields === false) {
+            fetchFields();
+        }
     }, []);
 
     return (
@@ -81,7 +96,7 @@ const AppointmentsBody = () => {
                 <div className="appointment-list">
                     {
                         updatedAppointments.map((ap, idx) => {
-                            return ap.status !== 'success' ? (
+                            return ap.status === 'success' ? (
                                 <div
                                     onClick={() => navigate(`/field-details/${ap.CourtID}`)}
                                     key={`appointment-list-item__${idx}__success`}
@@ -90,7 +105,7 @@ const AppointmentsBody = () => {
                                         field={ap.fieldDetails}
                                         timestamp={+ap.Timestamp}
                                         addCalendarIcon={true}
-                                        deleteIcon={true}
+                                        deleteIcon={false}
                                         key={`appointment-list-item__${idx}`}
                                     />
                                 </div>
@@ -102,7 +117,7 @@ const AppointmentsBody = () => {
                     </div>
                 </div>
                 <Gap h="3rem" />
-                <LeftSubTitle title="報到完成" />
+                <LeftSubTitle title="歷史預約" />
                 <Gap h="0.6rem" />
                 <div className="appointment-list">
                     {
@@ -124,11 +139,11 @@ const AppointmentsBody = () => {
                         })
                     }
                     <div className="empty-check">
-                        目前沒報到完成的預約
+                        目前沒有預約紀錄
                     </div>
                 </div>
                 <Gap h="2rem" />
-                <LeftSubTitle
+                {/* <LeftSubTitle
                     title="未報到"
                     color="danger"
                 />
@@ -154,7 +169,7 @@ const AppointmentsBody = () => {
                     <div className="empty-check">
                         目前沒有未報到的預約
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

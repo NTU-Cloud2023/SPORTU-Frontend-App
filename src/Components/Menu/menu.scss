@@ -15,7 +15,9 @@ $item-border-color: $secondary-color;
     width: 90vw;
     height: 100vh;
     background-color: $sportsman-background-color;
+    border-right: 1px solid $primary;
     z-index: $header-z;
+    animation: slide-in__left $transition ease-out;
 }
 
 .menu-cancel {
@@ -44,9 +46,7 @@ $item-border-color: $secondary-color;
     height: $item-height;
     font-size: $item-font-size;
     color: $item-color;
-    border-right: $item-border-width $item-border-style $item-border-color;
     border-bottom: $item-border-width $item-border-style $item-border-color;
-    border-left: $item-border-width $item-border-style $item-border-color;
 }
 
 @media (min-width: $pc-min-width) {

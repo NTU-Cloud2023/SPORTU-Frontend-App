@@ -77,13 +77,17 @@ const FieldCard = ({
                     <div className="text-pill dark">
                         使用人數{field.headcount}/{field.capacity}
                     </div>
-                    <div
-                        className="text-pill primary"
-                        onClick={() => navigate('/field-details/' + field.id)}
-                    >
+                    {
+                        onClick === undefined ? (
+                            <div
+                                className="text-pill primary"
+                                onClick={() => navigate('/field-details/' + field.id)}
+                            >
 
-                        {textMap.detailed_information}
-                    </div>
+                                {textMap.detailed_information}
+                            </div>
+                        ) : ''
+                    }
                 </div>
 
                 <div className="field-title">

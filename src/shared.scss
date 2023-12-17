@@ -63,6 +63,16 @@
         width: 1.4rem;
         height: 1.4rem;
     }
+
+    &.xl {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    &.running-ball {
+        background-image: url("./assets/images/icon/running_ball.gif");
+        background-size: 100% 100%;
+    }
 }
 
 .default-content {
@@ -72,5 +82,35 @@
     &.disabled,
     .disabled {
         color: $disabled;
+    }
+}
+
+@keyframes slide-in__right {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in__left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

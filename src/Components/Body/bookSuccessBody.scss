@@ -1,0 +1,25 @@
+@import "../../variables";
+
+.book-success-body {
+    min-height: calc(100vh - $header-height);
+    background-color: $dark;
+
+    > .wrapper {
+        padding: 0 15% 8rem;
+        background-image: url("../../assets/images/field-bg.png");
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+
+        > .content {
+            margin-right: -21.4%;
+            margin-left: -21.4%;
+            padding: 2rem 0;
+            font-size: 1.2rem;
+            text-align: center;
+            white-space: pre-line;
+            color: $content;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    }
+}

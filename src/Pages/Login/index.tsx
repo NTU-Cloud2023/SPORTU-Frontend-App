@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './login.scss';
 import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import { useNavigate } from 'react-router-dom';
-import { UserAPIResponse } from '../../API/APIInterface';
+
 
 const Login = () => {
     const [account, setAccount] = useState('');
@@ -13,7 +13,7 @@ const Login = () => {
         fetchingUser
     } = useContext(GlobDataContext);
     const navigate = useNavigate();
-    const handleLogin = (acc?: string, rememberCheck=false) => {
+    const handleLogin = (acc?: string, rememberCheck=true) => {
         if (fetchingUser === false) {
             fetchUser(acc || account).then((user) => {
                 if (rememberCheck) {
