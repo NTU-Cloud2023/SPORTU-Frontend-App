@@ -55,7 +55,7 @@ const FieldMapBody = () => {
             {
                 googleMapAPIKey ? (
                     <GoogleMap
-                        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+                        apiKey={googleMapAPIKey}
                         defaultZoom={15}
                         mapMinHeight="calc(100vh - 67px)"
                         defaultCenter={{
