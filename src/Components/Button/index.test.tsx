@@ -1,7 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'; // 將檢測用的 expect 函式 引用進來（後面會看到）
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Button from './index'; // 把 TodoButton 引用進來
 
 describe('元件測試 Button', () => {
@@ -14,11 +12,11 @@ describe('元件測試 Button', () => {
             />
         );
 
-        const todoButton = screen.getByText('TEST BTN'); // 在這邊「 Add todo 」是 TodoButton 裡面的內容
-        userEvent.click(todoButton); // 模擬使用者的點擊行為
-        expect(mockFunc).toBeCalledTimes(1); // 去預測函式是否真的因為點擊而被呼叫
-
-        userEvent.click(todoButton);
-        expect(mockFunc).toBeCalledTimes(2);
+        const todoButton = screen.getByText('TEST BTN');
+        expect(todoButton).toBeInTheDocument();
+        fireEvent.click(todoButton);
+        expect(mockFunc.mock.calls).toHaveLength(1);
+        fireEvent.click(todoButton);
+        expect(mockFunc.mock.calls).toHaveLength(2);
     });
 });
