@@ -1,5 +1,5 @@
 import React, { useState, ReactElement } from 'react';
-import { DistanceAPIResponse, FieldAPIResponse, SportAPIResponse, UserAPIResponse } from '../API/APIInterface';
+import { DistanceAPIResponse, FieldAPIResponse, GoogleMapKeyAPIResponse, SportAPIResponse, UserAPIResponse } from '../API/APIInterface';
 import { apiResponseProxy } from '../API/apiResponseProxy';
 import axios from 'axios';
 import getCurrentCoords from '../utils/getCurrentCoords';
@@ -29,7 +29,9 @@ export const GlobDataContext = React.createContext(
         fetchUser: (account: string) => (new Promise<UserAPIResponse>(() => {})),
         fetchingUser: false,
         doLogout: () => {},
-        sortFields: (by: SortTypes) => {}
+        sortFields: (by: SortTypes) => {},
+        googleMapAPIKey: undefined as undefined|string,
+        fetchGoogleMapAPIKey: () => (new Promise<undefined|string>(() => {}))
     }
 );
 
@@ -39,9 +41,24 @@ const GlobDataProvider = ({ children }:{
     const [sports, setSports] = useState<SportAPIResponse[]>([]);
     const [fields, setFields] = useState<UpdatedFieldData[]>([]);
     const [user, setUser] = useState<UserAPIResponse>(default_user);
+    const [googleMapAPIKey, setGoogleMapAPIKey] = useState<undefined|string>(undefined);
     const [fetchingSports, setFetchingSports] = useState(false);
     const [fetchingFields, setFetchingFields] = useState(false);
     const [fetchingUser, setFetchingUser] = useState(false);
+
+    const fetchGoogleMapAPIKey = () => (new Promise<string>((resolve, rej) => {
+        axios<GoogleMapKeyAPIResponse>({
+            method: 'GET',
+            url: 'https://admin.chillmonkey.tw/v1/googlemapapi/apikey'
+        }).then((res) => {
+            const key = res.data.api_key;
+            resolve(key);
+            setGoogleMapAPIKey(key);
+        }).catch(() => {
+            rej();
+            setGoogleMapAPIKey(undefined);
+        });
+    }));
 
     const sortFields = (by: SortTypes) => {
         const sorted: UpdatedFieldData[] = [...fields];
@@ -152,7 +169,9 @@ const GlobDataProvider = ({ children }:{
                 fetchUser,
                 fetchingUser,
                 doLogout,
-                sortFields
+                sortFields,
+                googleMapAPIKey,
+                fetchGoogleMapAPIKey
             }}
         >
             {children}

@@ -61,7 +61,8 @@ const BookBody = () => {
 很抱歉，您輸入的資料有誤:
 ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選取運動時間\n'}${cks.overdue ? '' : '● 該時間已無法預約\n'}${cks.onHour ? '' : '● 運動時間需為整點\n'}${cks.field ? '' : '● 請選擇球場\n'}${cks.match ? '' : '● 所選的球場與球種不相同\n'}
 請重新確認，如有問題請洽球場管理人員，謝謝
-        `);
+            `);
+            setFetching(false);
         } else {
             await delay(Math.random() * 1000);
 
@@ -141,16 +142,17 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                                     text={textMap.prev_page}
                                     onClick={() => setOpenFieldListM(false)}
                                 />
-                                <PillButton
+                                {/* <PillButton
                                     text={textMap.map_preview}
                                     type="map"
                                     onClick={() => {}}
                                     style={{margin: '0 1rem 0 auto'}}
-                                />
+                                /> */}
                                 <PillButton
                                     text={textMap.sorted_by}
                                     type="control"
                                     onClick={() => setOpenSort(true)}
+                                    style={{margin: '0 1rem 0 auto'}}
                                 />
                             </div>
                         </div>

@@ -75,7 +75,7 @@ const Login = () => {
                 </span>
                 <span
                     className="login-register-link"
-                    onClick={() => {}}
+                    onClick={() => window.open('https://sportu.auth.ap-northeast-1.amazoncognito.com/login?response_type=code&client_id=7dv888dumqvn3o45ri1l5g8osn&redirect_uri=https://www.chillmonkey.tw/login', 'blank')}
                 >
                     立即註冊
                 </span>
@@ -83,7 +83,7 @@ const Login = () => {
             <div className="login-space6" />
             <div
                 className="login-court-provider-login"
-                onClick={() => {}}
+                onClick={() => window.open('https://admin.chillmonkey.tw/', 'blank')}
             >
                 我是廠商
             </div>
