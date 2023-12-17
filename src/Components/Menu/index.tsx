@@ -27,10 +27,6 @@ const Menu = (props: MenuProps) => {
         navigate('/field-list');
     };
 
-    const handleCheckIn = () => {
-        navigate('/check-in');
-    };
-
     const handleLogout = () => {
         doLogout();
         navigate('/login');
