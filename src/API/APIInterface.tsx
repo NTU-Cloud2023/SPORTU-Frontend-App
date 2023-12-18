@@ -49,7 +49,7 @@ export interface Appointment {
     CourtID: string,
     NickName: string,
     Status: 'Pending' | 'Waiting' | 'Failed' | 'Successed',
-    TimestampUserId: string
+    TimestampUserID: string
 }
 
 export interface AppointmentAPIResponse {
@@ -76,4 +76,12 @@ export interface OrderAPIResponse {
 
 export interface GoogleMapKeyAPIResponse {
     api_key: string
+}
+
+export interface TimeSlotAPIResponse {
+    timeslot: string,
+    spaceid: string,
+    capacity: number,
+    ball_type: number,
+    headcount: number
 }

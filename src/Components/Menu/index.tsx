@@ -27,6 +27,10 @@ const Menu = (props: MenuProps) => {
         navigate('/field-list');
     };
 
+    const handleCheckIn = () => {
+        navigate('/check-in');
+    };
+
     const handleLogout = () => {
         doLogout();
         navigate('/login');
@@ -62,12 +66,12 @@ const Menu = (props: MenuProps) => {
             >
                 球場資訊
             </button>
-            {/* <button
+            <button
                 className="menu-check-in"
                 onClick={handleCheckIn}
             >
                 報到
-            </button> */}
+            </button>
             <button
                 className="menu-logout"
                 onClick={handleLogout}

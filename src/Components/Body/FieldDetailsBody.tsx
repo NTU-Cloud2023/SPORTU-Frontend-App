@@ -4,6 +4,10 @@ import PillButton from '../PillButton';
 import './fieldDetailsBody.scss';
 import { useContext, useEffect, useState } from 'react';
 import { GlobDataContext, UpdatedFieldData } from '../../Contexts/GlobDataProvider';
+import { TimeSlotAPIResponse } from '../../API/APIInterface';
+import axios from 'axios';
+import { getPrevHourTimestamp } from '../../utils';
+import SimpleList from '../SimpleList';
 
 const FieldDetailsBody = () => {
     const navigate = useNavigate();
@@ -17,6 +21,41 @@ const FieldDetailsBody = () => {
         fetchGoogleMapAPIKey
     } = useContext(GlobDataContext);
     const [fieldDetails, setFieldDetails] = useState<UpdatedFieldData|undefined>(undefined);
+    const [validSlots, setValidSlots] = useState<TimeSlotAPIResponse[]>([]);
+    const [nextStartTimestamp, setNext] = useState(getPrevHourTimestamp() / 1000);
+    const [fetching, setFetching] = useState(false);
+
+    const fetchNext6 = () => {
+        if (fetching || !fieldDetails) return;
+
+        setFetching(true);
+        const prevHour = nextStartTimestamp;
+        const slots = 6;
+        const period = 3;
+        let slotsQuery = prevHour.toString();
+        for (let i = 1; i <= slots; i++) {
+            slotsQuery += `,${prevHour + i * 3600 * period}`;
+        }
+
+        axios<TimeSlotAPIResponse[]>({
+            method: 'GET',
+            url: `https://admin.chillmonkey.tw/v1/spaces/${fieldDetails.id}/timeSlots?slots=${slotsQuery}`
+        }).then((res) => {
+
+            setTimeout(() => {
+                console.log(res.data);
+                setNext(prevHour + (slots + 1) * 3600 * period);
+                setValidSlots((arr) => [...arr, ...res.data]);
+                setFetching(false);
+            }, (Math.random() / 2 + 0.5) * 1500);
+        });
+    };
+
+    useEffect(() => {
+        if (fieldDetails === undefined || validSlots.length !== 0) return;
+
+        fetchNext6();
+    }, [fieldDetails, validSlots]);
 
     useEffect(() => {
         if (param.id === undefined) navigate(-1);
@@ -115,12 +154,57 @@ const FieldDetailsBody = () => {
                     單場區間: {fieldDetails?.eachtime} 小時
                     <span className="disabled">廠商未提供</span>
                 </div> */}
-                {/* <div className="sub-title">
-                    該場地兩週內可預約時段
+                <div className="sub-title">
+                    可預約時段
                 </div>
-                <div className="default-content">
-                    <span className="disabled">廠商未提供</span>
-                </div> */}
+                {
+                    validSlots.length === 0 ? (
+                        fetching ? (
+                            <div className="icon loading xl"></div>
+                        ) : (
+                            <div className="default-content">
+                                <span className="disabled">廠商未提供</span>
+                            </div>
+                        )
+                    ) : (
+                        <div className="slot-container">
+                            {
+                                validSlots.map((slot) => (
+                                    <SimpleList
+                                        onClick={() => {
+                                            navigate('/book', {
+                                                state: {
+                                                    field: fieldDetails,
+                                                    timestamp: slot.timeslot
+                                                }
+                                            });
+                                        }}
+                                        slot={slot}
+                                        key={slot.timeslot}
+                                    />
+                                ))
+                            }
+                        </div>
+                    )
+                }
+                {
+                    validSlots.length > 0 && fetching ? (
+                        <div className="text-center">
+                            <div className="my-4 icon loading xl"></div>
+                        </div>
+                    ) : ''
+                }
+                {
+                    !fetching ? (
+                        <div className="mt-4 text-center">
+                            <PillButton
+                                text="查看更多時段"
+                                onClick={fetchNext6}
+                                type="none"
+                            />
+                        </div>
+                    ) : ''
+                }
                 <div className="sub-title">
                     地圖資訊
                 </div>

@@ -1,0 +1,15 @@
+@import "../../variables";
+
+.check-in-body {
+    min-height: calc(100vh - $header-height);
+    background-color: $dark;
+
+    > .wrapper {
+        padding: 0 15% 8rem;
+
+        > .content {
+            white-space: pre-line;
+            color: $content;
+        }
+    }
+}

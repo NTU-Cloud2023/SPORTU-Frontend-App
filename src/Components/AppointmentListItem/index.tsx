@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { FieldAPIResponse } from '../../API/APIInterface';
 import './appointmentListItem.scss';
+import { localDateTimeString } from '../../utils';
 
 
 const AppointmentListItem = ({
@@ -14,7 +15,6 @@ const AppointmentListItem = ({
     addCalendarIcon: boolean,
     deleteIcon: boolean
 }) => {
-    const date = new Date(timestamp);
     const addToGoogleCalendar = () => {
         const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${field.name.replace(' ', '+')}&dates=${format(new Date(timestamp), 'yyyyMMdd\'T\'HHmmss\'Z\'')}&details=${encodeURIComponent(field.nav_url)}`;
         window.open(url, 'blank');
@@ -25,7 +25,7 @@ const AppointmentListItem = ({
             <div className="name">
                 {field.name}
                 <br />
-                {date.toLocaleDateString()} {date.toLocaleTimeString()}
+                {localDateTimeString(timestamp)}
             </div>
             {
                 addCalendarIcon ? (

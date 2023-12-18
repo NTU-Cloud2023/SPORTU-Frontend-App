@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.simple-list {
+    display: flex;
+    padding: 0.6rem 30px;
+    color: $content;
+    border-top: 1px solid $disabled;
+    border-bottom: 1px solid $disabled;
+
+    +.simple-list {
+        margin-top: -1px;
+    }
+}
