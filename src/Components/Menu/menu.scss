@@ -1,7 +1,7 @@
 @import "../../variables";
 
 $item-width: 100%;
-$item-height: 6%;
+$item-height: 4rem;
 $item-font-size: 20px;
 $item-color: $secondary-color;
 $item-border-width: 1.5px;
@@ -40,13 +40,27 @@ $item-border-color: $secondary-color;
 .menu-book-now,
 .menu-show-appointment-records,
 .menu-show-field-list,
-.menu-check-in,
-.menu-logout {
+.menu-check-in {
     width: $item-width;
     height: $item-height;
     font-size: $item-font-size;
-    color: $item-color;
+    color: $primary;
     border-bottom: $item-border-width $item-border-style $item-border-color;
+
+    &.active {
+        color: $secondary-color;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.menu-logout {
+    margin-top: $item-height;
+    width: $item-width;
+    height: $item-height;
+    font-size: $item-font-size;
+    color: red;
+    border-top: 1px solid $danger;
+    border-bottom: 1px solid $danger;
 }
 
 @media (min-width: $pc-min-width) {

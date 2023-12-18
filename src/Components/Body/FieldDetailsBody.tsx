@@ -31,7 +31,7 @@ const FieldDetailsBody = () => {
         setFetching(true);
         const prevHour = nextStartTimestamp;
         const slots = 6;
-        const period = 3;
+        const period = 1;
         let slotsQuery = prevHour.toString();
         for (let i = 1; i <= slots; i++) {
             slotsQuery += `,${prevHour + i * 3600 * period}`;

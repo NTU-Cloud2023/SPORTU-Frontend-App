@@ -1,50 +1,60 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import { ReactComponent as Cancel } from '../../assets/images/icon/cancel.svg';
 import './notifications.scss';
+import PillButton from '../PillButton';
 
 type NotificationsProps = {
     handleCloseNotifications: () => void;
 };
 
 const Notifications = (props: NotificationsProps) => {
-    const { user } = useContext(GlobDataContext);
-    const [notificationItems, setNotificationItems] = useState<Array<JSX.Element>>([]);
+    const {
+        alerts,
+        notifications,
+        readNotification
+    } = useContext(GlobDataContext);
 
-    useEffect(() => {
-        const userId = user.data ? user.data.id : 2;
-        axios({
-            method: 'GET',
-            url: 'https://admin.chillmonkey.tw/v1/users/' + userId.toString() + '/messages'
-        }).then((res) => {
-            const notificationItems = [];
-            const notifications = res.data;
-            const n = notifications.length;
-            for (let i = 0; i < n; i++) {
-                notificationItems.push(
-                    <div
-                        className="notifications-notification-item"
-                        key={i}
-                    >
-                        {notifications[i].message}
-                    </div>
-                );
+    const readAll = () => {
+        notifications.forEach((ntf) => {
+            if(ntf.viewed === 0) {
+                readNotification(ntf.id);
             }
-
-            setNotificationItems(notificationItems);
-        }).catch((err) => {
-            console.log(err);
         });
-    }, []);
+    };
 
     return (
         <div className="notifications">
             <div className="notifications-cancel">
+                {
+                    alerts.length > 0 ? (
+                        <div className="d-block mr-2">
+                            <PillButton
+                                text="全部已讀"
+                                onClick={readAll}
+                                type="none"
+                            />
+                        </div>
+                    ) : ''
+                }
                 <Cancel onClick={props.handleCloseNotifications}/>
             </div>
             <div className="notifications-space1"/>
-            {notificationItems}
+            {
+                notifications.map((notification) => (
+                    <div
+                        className={`notifications-notification-item ${notification.viewed === 1 ? 'viewed' : 'new'}`}
+                        key={notification.id}
+                        onClick={
+                            notification.viewed === 0
+                                ? () => readNotification(notification.id)
+                                : () => {}
+                        }
+                    >
+                        {notification.message}
+                    </div>
+                ))
+            }
         </div>
     );
 };

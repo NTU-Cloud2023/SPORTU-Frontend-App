@@ -38,7 +38,7 @@ export const getCheckInCases = () => (new Promise<CheckInCase[]>((res) => {
             snapshot.docs.forEach((doc) => {
                 books.push({ ...doc.data(), id: doc.id });
             });
-            setTimeout(() => res(books as CheckInCase[]), Math.random() * 1000);
+            setTimeout(() => res(books as CheckInCase[]), (Math.random() / 2 + 0.5) * 1500);
         });
 }));
 
@@ -46,6 +46,6 @@ export const addCheckInCase = (TimestampUserID: string) => (new Promise<void>((r
     addDoc(colRef, { TimestampUserID }).then(() => {
         setTimeout(() => {
             res();
-        }, Math.random() * 1000);
+        }, (Math.random() / 2 + 0.5) * 1500);
     });
 }));
