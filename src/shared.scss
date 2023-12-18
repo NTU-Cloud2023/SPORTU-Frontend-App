@@ -64,6 +64,11 @@
         background-size: 100% 100%;
     }
 
+    &.danger {
+        background-image: url("./assets/images/icon/warning.svg");
+        background-size: 100% 100%;
+    }
+
     &.lg {
         width: 1.4rem;
         height: 1.4rem;
