@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as Cancel } from '../../assets/images/icon/cancel.svg';
 import './menu.scss';
 import { useContext } from 'react';
@@ -10,6 +10,7 @@ type MenuProps = {
 
 const Menu = (props: MenuProps) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { doLogout } = useContext(GlobDataContext);
     const handleShowHomePage = () => {
         navigate('/home');
@@ -43,31 +44,31 @@ const Menu = (props: MenuProps) => {
             </div>
             <div className="menu-space1" />
             <button
-                className="menu-show-home-page"
+                className={`menu-show-home-page ${location.pathname === '/home' ? 'active' : ''}`}
                 onClick={handleShowHomePage}
             >
                 回首頁
             </button>
             <button
-                className="menu-book-now"
+                className={`menu-book-now ${location.pathname === '/book' ? 'active' : ''}`}
                 onClick={handleBookNow}
             >
                 立即預約
             </button>
             <button
-                className="menu-show-appointment-records"
+                className={`menu-show-appointment-records ${location.pathname === '/appointments' ? 'active' : ''}`}
                 onClick={handleShowAppointmentRecords}
             >
                 我的配對
             </button>
             <button
-                className="menu-show-field-list"
+                className={`menu-show-field-list ${location.pathname === '/field-list' ? 'active' : ''}`}
                 onClick={handleShowFieldList}
             >
                 球場資訊
             </button>
             <button
-                className="menu-check-in"
+                className={`menu-check-in ${location.pathname === '/check-in' ? 'active' : ''}`}
                 onClick={handleCheckIn}
             >
                 報到

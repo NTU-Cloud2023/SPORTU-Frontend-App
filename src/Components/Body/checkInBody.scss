@@ -1,7 +1,7 @@
 @import "../../variables";
 
 .check-in-body {
-    min-height: calc(100vh - $header-height);
+    // min-height: calc(100vh - $header-height);
     background-color: $dark;
 
     > .wrapper {

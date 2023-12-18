@@ -19,12 +19,61 @@
 }
 
 .header-bell {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     float: right;
     margin-right: 6%;
     height: 100%;
+
+    .bell-content {
+        position: relative;
+        transform-origin: 50% 0%;
+    }
+
+    .dot {
+        position: absolute;
+        top: 1rem;
+        right: -5px;
+        display: none;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        border-radius: 10px;
+    }
+
+    &.ringing {
+        .bell-content {
+            animation: ringing 1s ease-out infinite;
+        }
+
+        .dot {
+            display: block;
+        }
+    }
+}
+
+@keyframes ringing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(-25deg);
+    }
+
+    30% {
+        transform: rotate(25deg);
+    }
+
+    40% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 .header-map {

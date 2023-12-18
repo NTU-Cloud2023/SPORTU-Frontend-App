@@ -85,3 +85,13 @@ export interface TimeSlotAPIResponse {
     ball_type: number,
     headcount: number
 }
+
+export interface NotificationAPIResponse {
+    id: number,
+    message: string,
+    message_timestamp: string,
+    update_at: string,
+    created_at: string,
+    user_id: 4,
+    viewed: 1|0
+}

@@ -16,16 +16,15 @@
 .notifications-cancel {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $notification-cancel-height;
     height: $notification-cancel-height;
 }
 
 .notifications-space1 {
-    height: 12%;
+    height: 5rem;
 }
 
 .notifications-notification-item {
@@ -34,6 +33,16 @@
     font-size: 16px;
     color: $notification-item-text-color;
     border-bottom: 1px dashed $notification-item-border-color;
+
+    &.viewed {
+        color: $disabled
+    }
+
+    &.new {
+        margin-left: 0;
+        padding-left: 5px;
+        border-left: 5px solid $info;
+    }
 }
 
 @media (min-width: $pc-min-width) {
