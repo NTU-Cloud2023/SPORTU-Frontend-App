@@ -1,6 +1,5 @@
-import { useMemo } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import AppointmentsBody from './AppointmentsBody';
-import BookBody from './BookBody';
 import BookFieldListBody from './BookFieldListBody';
 import BookFieldMapBody from './BookFieldMapBody';
 import CheckInBody from './CheckInBody';
@@ -9,6 +8,8 @@ import FieldListBody from './FieldListBody';
 import FieldMapBody from './FieldMapBody';
 import NearByBody from './NearByBody';
 import BookSuccessBody from './BookSuccessBody';
+
+const BookBody = React.lazy(() => import('./BookBody'));
 
 type BodyProps = {
 	page: PageName;
@@ -26,7 +27,11 @@ const Body = ({
                 </>
             );
         } else if (page === 'book') {
-            return <BookBody />;
+            return (
+                <Suspense fallback={<></>}>
+                    <BookBody />
+                </Suspense>
+            );
         } else if (page === 'book__field-map')  {
             return <BookFieldMapBody />;
         } else if (page === 'book__field-list') {

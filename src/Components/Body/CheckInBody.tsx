@@ -12,6 +12,7 @@ import distanceFormat from '../../utils/distanceFormat';
 import Button from '../Button';
 import WarningContent from '../WarningContent';
 import Cover from '../Cover';
+import PositioningAnimation from '../Animation/PositioningAnimation';
 
 type AppointmentStatus = 'success' | 'finished' | 'undone'
 
@@ -214,6 +215,8 @@ const CheckInBody = () => {
                         ) : ''
                 }
             </div>
+
+            <PositioningAnimation />
         </div>
     );
 };

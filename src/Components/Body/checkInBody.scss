@@ -1,11 +1,14 @@
 @import "../../variables";
 
 .check-in-body {
+    position: relative;
     min-height: calc(100vh - $header-height);
     background-color: $dark;
 
     > .wrapper {
+        position: relative;
         padding: 0 15% 8rem;
+        z-index: $page;
 
         > .content {
             white-space: pre-line;
