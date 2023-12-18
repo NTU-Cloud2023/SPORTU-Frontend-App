@@ -1,18 +1,12 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
-import AppointmentListItem from '../AppointmentListItem';
-import Gap from '../Gap';
-import LeftSubTitle from '../Title/LeftSubTitle';
-import LeftTitle from '../Title/LeftTitle';
 import './appointmentsBody.scss';
 import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import axios from 'axios';
 import { Appointment, AppointmentAPIResponse, FieldAPIResponse } from '../../API/APIInterface';
-import { useNavigate } from 'react-router-dom';
 import { CheckInCase, addCheckInCase, getCheckInCases } from '../../Storage/firebase';
 import './checkInBody.scss';
 import BodyTitle from '../Title/BodyTitle';
 import SelectInputBar, { SelectOption } from '../SelectInputBar';
-import { format } from 'date-fns';
 import { localDateTimeString } from '../../utils';
 import distanceFormat from '../../utils/distanceFormat';
 import Button from '../Button';
