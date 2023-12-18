@@ -35,7 +35,9 @@ const Pager = (props: PagerProps) => {
 
     const {
         user,
-        fetchUser
+        fetchUser,
+        fetchNotifications,
+        alerts
     } = useContext(GlobDataContext);
     const navigate = useNavigate();
 
@@ -52,6 +54,40 @@ const Pager = (props: PagerProps) => {
             }
         }
     }, []);
+
+    useEffect(() => {
+        if (user.success && user.data?.id) {
+            fetchNotifications(user.data.id);
+
+            const interval = setInterval(() => {
+                if (user.data?.id) {
+                    fetchNotifications(user.data.id);
+                }
+            }, 10000);
+
+            return () => clearInterval(interval);
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (alerts.length > 0) {
+            const prev = localStorage.getItem('alerted') || 0;
+            const current = new Date().getTime();
+            if (+prev > current) return;
+
+            localStorage.setItem('alerted', (current  + 60000 * 5).toString());
+
+            let msg = '';
+            alerts.forEach((alt) => {
+                msg += `--------------------
+${alt.message}`;
+            });
+            alert(`提醒您
+您有 ${alerts.length} 則重要訊息
+${msg}
+            `);
+        }
+    }, [alerts]);
 
     return (
         <div className="pager">

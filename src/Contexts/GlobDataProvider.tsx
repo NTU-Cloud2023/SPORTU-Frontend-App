@@ -1,5 +1,5 @@
-import React, { useState, ReactElement } from 'react';
-import { DistanceAPIResponse, FieldAPIResponse, GoogleMapKeyAPIResponse, SportAPIResponse, UserAPIResponse } from '../API/APIInterface';
+import React, { useState, ReactElement, useMemo } from 'react';
+import { DistanceAPIResponse, FieldAPIResponse, GoogleMapKeyAPIResponse, NotificationAPIResponse, SportAPIResponse, UserAPIResponse } from '../API/APIInterface';
 import { apiResponseProxy } from '../API/apiResponseProxy';
 import axios from 'axios';
 import getCurrentCoords from '../utils/getCurrentCoords';
@@ -18,9 +18,13 @@ export type SortTypes = 'id' | 'distance' | 'time'
 
 export const GlobDataContext = React.createContext(
     {
+        notifications: [] as NotificationAPIResponse[],
+        alerts: [] as NotificationAPIResponse[],
         sports: [] as SportAPIResponse[],
         fields: [] as UpdatedFieldData[],
         user: default_user,
+        fetchNotifications: (userId: number) => {},
+        fetchingNotifications: false,
         fetchSports: () => {},
         fetchingSports: false,
         fetchFields: () => {},
@@ -31,20 +35,58 @@ export const GlobDataContext = React.createContext(
         doLogout: () => {},
         sortFields: (by: SortTypes) => {},
         googleMapAPIKey: undefined as undefined|string,
-        fetchGoogleMapAPIKey: () => (new Promise<undefined|string>(() => {}))
+        fetchGoogleMapAPIKey: () => (new Promise<undefined|string>(() => {})),
+        readNotification: (id: number) => {}
     }
 );
 
 const GlobDataProvider = ({ children }:{
     children: ReactElement
 }) => {
+    const [notifications, setNotifications] = useState<NotificationAPIResponse[]>([]);
     const [sports, setSports] = useState<SportAPIResponse[]>([]);
     const [fields, setFields] = useState<UpdatedFieldData[]>([]);
     const [user, setUser] = useState<UserAPIResponse>(default_user);
     const [googleMapAPIKey, setGoogleMapAPIKey] = useState<undefined|string>(undefined);
+    const [fetchingNotifications] = useState(false);
     const [fetchingSports, setFetchingSports] = useState(false);
     const [fetchingFields, setFetchingFields] = useState(false);
     const [fetchingUser, setFetchingUser] = useState(false);
+    const alerts = useMemo<NotificationAPIResponse[]>(() => {
+        const filtered = notifications.filter((notification) => {
+            const f3 = notification.message.slice(0, 3);
+            const f7 = notification.message.slice(0, 7);
+            if (notification.viewed === 0
+                && (f3 === '提醒您'
+                    || f7 === '訂單已成功處理')) return true;
+            return false;
+        });
+        return filtered;
+    }, [notifications]);
+
+    const readNotification = (id: number) => {
+        axios({
+            method: 'GET',
+            url: `https://admin.chillmonkey.tw/v1/users/closemessage/${id}`
+        });
+
+        setNotifications((arr) => {
+            const idx = arr.findIndex((notification) => notification.id === id);
+            arr[idx].viewed = 1;
+            return [...arr];
+        });
+    };
+
+    const fetchNotifications = (userId: number) => {
+        axios<NotificationAPIResponse[]>({
+            method: 'GET',
+            url: `https://admin.chillmonkey.tw/v1/users/${userId}/messages`
+        }).then((res) => {
+            setNotifications(res.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    };
 
     const fetchGoogleMapAPIKey = () => (new Promise<string>((resolve, rej) => {
         axios<GoogleMapKeyAPIResponse>({
@@ -158,20 +200,25 @@ const GlobDataProvider = ({ children }:{
     return (
         <GlobDataContext.Provider
             value={{
+                alerts,
+                notifications,
                 sports,
                 fields,
                 user,
+                fetchNotifications,
                 fetchSports,
                 fetchingSports,
                 fetchFields,
                 updateField,
+                fetchingNotifications,
                 fetchingFields,
                 fetchUser,
                 fetchingUser,
                 doLogout,
                 sortFields,
                 googleMapAPIKey,
-                fetchGoogleMapAPIKey
+                fetchGoogleMapAPIKey,
+                readNotification
             }}
         >
             {children}
