@@ -12,7 +12,7 @@ import TimePicker from '../TimePicker';
 import FieldCardPopUp from '../PopUp/FieldCardPopUp';
 import SelectSportInputBar from '../SelectInputBar/SelectSportInputBar';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { delay } from '../../utils';
 import Cover from '../Cover';
 import SortFieldsPopUp from '../PopUp/SortFieldsPopUp';
@@ -28,6 +28,7 @@ const BookBody = () => {
     const [selectedSportType, setSelectedSportType] = useState('all');
     const [fetching, setFetching] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const {
         user,
@@ -105,6 +106,14 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
             setSelectedSportType(selectedSport?.game_name);
         }
     }, [selectedSport]);
+
+    useEffect(() => {
+        if (location.state !== null) {
+            setSelectedField({...location.state.field});
+            setSelectedTime(new Date(+location.state.timestamp * 1000));
+            setSelectedSport(location.state.field.ball_type);
+        }
+    }, [location]);
 
     return (
         <div className="book-body">
