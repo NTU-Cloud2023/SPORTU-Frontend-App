@@ -49,7 +49,7 @@ export interface Appointment {
     CourtID: string,
     NickName: string,
     Status: 'Pending' | 'Waiting' | 'Failed' | 'Successed',
-    TimestampUserId: string
+    TimestampUserID: string
 }
 
 export interface AppointmentAPIResponse {

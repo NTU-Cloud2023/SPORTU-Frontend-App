@@ -5,6 +5,7 @@ import './shared.scss';
 import reportWebVitals from './reportWebVitals';
 import Router from './Router';
 import GlobDataProvider from './Contexts/GlobDataProvider';
+import './Storage/firebase';
 
 // require('dotenv').config();
 

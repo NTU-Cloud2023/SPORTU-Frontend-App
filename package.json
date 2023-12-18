@@ -11,6 +11,7 @@
         "axios": "^1.6.1",
         "date-fns": "^2.30.0",
         "dotenv": "^16.3.1",
+        "firebase": "^10.7.1",
         "google-maps-react-markers": "^2.0.7",
         "http-proxy-middleware": "^2.0.6",
         "react": "^18.2.0",

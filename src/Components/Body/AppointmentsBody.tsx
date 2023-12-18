@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import AppointmentListItem from '../AppointmentListItem';
 import Gap from '../Gap';
 import LeftSubTitle from '../Title/LeftSubTitle';
@@ -8,6 +8,7 @@ import { GlobDataContext } from '../../Contexts/GlobDataProvider';
 import axios from 'axios';
 import { Appointment, AppointmentAPIResponse, FieldAPIResponse } from '../../API/APIInterface';
 import { useNavigate } from 'react-router-dom';
+import { CheckInCase, getCheckInCases } from '../../Storage/firebase';
 
 type AppointmentStatus = 'success' | 'finished' | 'undone'
 
@@ -27,6 +28,12 @@ const AppointmentsBody = () => {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
     const [updatedAppointments, setUpdatedAppointments] = useState<UpdatedAppointment[]>([]);
     const [fetching, setFetching] = useState(false);
+    const [checkInCases, setCheckInCases] = useState<CheckInCase[]>([]);
+    const checkInCasesStr = useMemo<string[]>(() => {
+        return checkInCases.map((c) => {
+            return c.TimestampUserID;
+        });
+    }, [checkInCases]);
 
     const fetchAppointments = () => {
         if (fetching === true) return;
@@ -48,14 +55,15 @@ const AppointmentsBody = () => {
 
     useEffect(() => {
         console.log('appointments updated');
-        const current = new Date().getTime();
+        const current = new Date().getTime() - 1800000;
         const updated: UpdatedAppointment[] = [];
         console.log(appointments);
         appointments.forEach((ap) => {
             const f = mapFieldDetails(+ap.CourtID);
             if (f !== undefined && ap.Status !== 'Failed') {
                 let status: AppointmentStatus = 'success';
-                if (+ap.Timestamp * 1000 < current) status = 'finished';
+                if (checkInCasesStr.includes(ap.TimestampUserID)) status = 'finished';
+                else if (+ap.Timestamp * 1000 < current) status = 'undone';
                 updated.push({
                     ...ap,
                     Timestamp: (+ap.Timestamp * 1000).toString(),
@@ -66,7 +74,7 @@ const AppointmentsBody = () => {
         });
         setUpdatedAppointments(updated);
         console.log(updated);
-    }, [appointments, fields]);
+    }, [appointments, fields, checkInCasesStr]);
 
     useEffect(() => {
         console.log('user check');
@@ -81,6 +89,8 @@ const AppointmentsBody = () => {
         if (fields.length === 0 && fetchingFields === false) {
             fetchFields();
         }
+
+        getCheckInCases().then((res) => setCheckInCases(res));
     }, []);
 
     return (
@@ -117,7 +127,7 @@ const AppointmentsBody = () => {
                     </div>
                 </div>
                 <Gap h="3rem" />
-                <LeftSubTitle title="歷史預約" />
+                <LeftSubTitle title="完成報到" />
                 <Gap h="0.6rem" />
                 <div className="appointment-list">
                     {
@@ -130,7 +140,7 @@ const AppointmentsBody = () => {
                                     <AppointmentListItem
                                         field={ap.fieldDetails}
                                         timestamp={+ap.Timestamp}
-                                        addCalendarIcon={false}
+                                        addCalendarIcon={true}
                                         deleteIcon={false}
                                     />
                                 </div>
@@ -143,7 +153,7 @@ const AppointmentsBody = () => {
                     </div>
                 </div>
                 <Gap h="2rem" />
-                {/* <LeftSubTitle
+                <LeftSubTitle
                     title="未報到"
                     color="danger"
                 />
@@ -169,7 +179,7 @@ const AppointmentsBody = () => {
                     <div className="empty-check">
                         目前沒有未報到的預約
                     </div>
-                </div> */}
+                </div>
             </div>
         </div>
     );
