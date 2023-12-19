@@ -17,15 +17,14 @@ const Login = () => {
         if (fetchingUser === false) {
             fetchUser(acc || account).then((user) => {
                 if (rememberCheck) {
-                    const res = confirm(`
-    ${user.data?.nick_name} 您好
-    是否要記住您的登入資訊？`);
+                    const res = confirm(`${user.data?.nick_name} 您好，是否要記住您的登入資訊？`);
                     if (res) {
                         localStorage.setItem('SPORTU_USER_ACCOUNT', account);
                     }
                 }
                 navigate('/home');
             }).catch(() => {
+                alert('您輸入的帳號或密碼錯誤');
                 localStorage.removeItem('SPORTU_USER_ACCOUNT');
             });
         }
