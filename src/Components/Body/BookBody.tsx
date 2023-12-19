@@ -34,9 +34,9 @@ const BookBody = () => {
         user,
         fields,
         sports,
-        fetchSports,
-        fetchingSports
+        updateSportsSort
     } = useContext(GlobDataContext);
+
     const book = async () => {
         if (fetching) return;
         setFetching(true);
@@ -83,7 +83,7 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                     }
                 });
             }).catch((e) => {
-                console.log(e);
+                alert('你已經預約過該場次');
             }).finally(() => setFetching(false));
 
             // const iter = selectedField?.eachtime;
@@ -91,17 +91,8 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
         }
     };
 
-    useEffect(() => {
-        if (sports.length === 0 && fetchingSports === false) {
-            fetchSports();
-        }
-    }, []);
 
     useEffect(() => {
-        if (selectedField !== undefined
-            && selectedField.ball_type.type !== selectedSport?.type) {
-            setSelectedField(undefined);
-        }
         if (selectedSport !== undefined) {
             setSelectedSportType(selectedSport?.game_name);
         }
@@ -109,11 +100,15 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
 
     useEffect(() => {
         if (location.state !== null) {
+            updateSportsSort(location.state.field.ball_type.type);
             setSelectedField({...location.state.field});
             setSelectedTime(new Date(+location.state.timestamp * 1000));
-            setSelectedSport(location.state.field.ball_type);
         }
     }, [location]);
+
+    const clearField = () => {
+        setSelectedField(undefined);
+    };
 
     return (
         <div className="book-body">
@@ -122,6 +117,7 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                 <SelectSportInputBar
                     sports={sports}
                     setSport={setSelectedSport}
+                    clearField={clearField}
                 />
                 <TimePicker
                     value={selectedTime}

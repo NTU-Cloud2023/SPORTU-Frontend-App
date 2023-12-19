@@ -36,6 +36,9 @@ const Pager = (props: PagerProps) => {
     const {
         user,
         fetchUser,
+        sports,
+        fetchSports,
+        fetchingSports,
         fetchNotifications,
         alerts
     } = useContext(GlobDataContext);
@@ -68,6 +71,12 @@ const Pager = (props: PagerProps) => {
             return () => clearInterval(interval);
         }
     }, [user]);
+
+    useEffect(() => {
+        if (sports.length === 0 && fetchingSports === false) {
+            fetchSports();
+        }
+    }, []);
 
     useEffect(() => {
         if (alerts.length > 0) {
