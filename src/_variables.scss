@@ -61,3 +61,19 @@ $cover-z: 70;
 // animation
 // ======================================
 $transition: 0.2s;
+
+%wrapper {
+    min-height: 100vh;
+
+    &::before {
+        display: block;
+        content: "";
+        height: $header-height;
+    }
+
+    &::after {
+        display: block;
+        content: "";
+        height: 6rem;
+    }
+}

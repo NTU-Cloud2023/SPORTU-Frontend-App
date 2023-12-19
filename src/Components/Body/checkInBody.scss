@@ -5,7 +5,9 @@
     background-color: $dark;
 
     > .wrapper {
-        padding: 0 15% 8rem;
+        @extend %wrapper;
+
+        padding: 0 15%;
 
         > .content {
             white-space: pre-line;

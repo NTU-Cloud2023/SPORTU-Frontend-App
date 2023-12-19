@@ -22,7 +22,7 @@ const Body = ({
             return (
                 <>
                     <BookBody />
-                    <NearByBody />
+                    <NearByBody lazyLoadAmount={2} />
                 </>
             );
         } else if (page === 'book') {

@@ -57,7 +57,7 @@ const FieldMapBody = () => {
                     <GoogleMap
                         apiKey={googleMapAPIKey}
                         defaultZoom={15}
-                        mapMinHeight="calc(100vh - 67px)"
+                        mapMinHeight="calc(100vh - 150px)"
                         defaultCenter={{
                             lat: defaultCoords.latitude,
                             lng: defaultCoords.longitude
