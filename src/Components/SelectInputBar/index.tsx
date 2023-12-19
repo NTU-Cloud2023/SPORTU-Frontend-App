@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import './selectInputBar.scss';
 
 export interface SelectOption {
@@ -8,12 +8,14 @@ export interface SelectOption {
 
 export interface SelectInputBarProps {
     options: SelectOption[],
-    setValue: (s: string) => void
+    setValue: Dispatch<SetStateAction<string>>,
+    clearField?: () => void
 }
 
 const SelectInputBar = ({
     options,
-    setValue
+    setValue,
+    clearField=() => {}
 }: SelectInputBarProps) => {
 
     useEffect(() => {
@@ -23,7 +25,17 @@ const SelectInputBar = ({
 
     return (
         <div className="select-input-bar">
-            <select onChange={(e) => setValue(e.target.value)}>
+            <select
+                onChange={(e) => {
+                    setValue((v) => {
+                        if (e.target.value !== v) {
+                            clearField();
+                            return(e.target.value);
+                        }
+                        return v;
+                    });
+                }}
+            >
                 {
                     options.map((opt, idx) => (
                         <option

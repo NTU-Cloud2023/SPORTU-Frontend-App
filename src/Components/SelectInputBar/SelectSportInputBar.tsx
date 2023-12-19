@@ -4,12 +4,14 @@ import SelectInputBar, { SelectOption } from '.';
 
 export interface SelectInputBarProps {
     sports: SportAPIResponse[],
-    setSport: (s: SportAPIResponse|undefined) => void
+    setSport: (s: SportAPIResponse|undefined) => void,
+    clearField?: () => void
 }
 
 const SelectSportInputBar = ({
     sports,
-    setSport
+    setSport,
+    clearField
 }: SelectInputBarProps) => {
     const sportOptions = useMemo<SelectOption[]>(() => {
         const opts = sports.map<SelectOption>((sport) => ({
@@ -33,6 +35,7 @@ const SelectSportInputBar = ({
         <SelectInputBar
             options={sportOptions}
             setValue={setType}
+            clearField={clearField}
         />
     );
 };
