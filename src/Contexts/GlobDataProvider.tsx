@@ -36,7 +36,8 @@ export const GlobDataContext = React.createContext(
         sortFields: (by: SortTypes) => {},
         googleMapAPIKey: undefined as undefined|string,
         fetchGoogleMapAPIKey: () => (new Promise<undefined|string>(() => {})),
-        readNotification: (id: number) => {}
+        readNotification: (id: number) => {},
+        hasNewMessage: false
     }
 );
 
@@ -62,6 +63,10 @@ const GlobDataProvider = ({ children }:{
             return false;
         });
         return filtered;
+    }, [notifications]);
+    const hasNewMessage = useMemo(() => {
+        const ntf = notifications.find((n) => n.viewed === 0);
+        return (ntf !== undefined);
     }, [notifications]);
 
     const readNotification = (id: number) => {
@@ -200,6 +205,7 @@ const GlobDataProvider = ({ children }:{
     return (
         <GlobDataContext.Provider
             value={{
+                hasNewMessage,
                 alerts,
                 notifications,
                 sports,
