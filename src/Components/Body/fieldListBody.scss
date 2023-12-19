@@ -3,8 +3,21 @@
 .field-list-body {
     background-color: $dark;
 
+    &.in-home-page {
+        margin-top: -4rem;
+        background-color: transparent;
+
+        > .wrapper {
+            &::before {
+                display: none;
+            }
+        }
+    }
+
     > .wrapper {
         padding: 0 20px 1px;
+
+        @extend %wrapper;
 
         .empty-check {
             display: none;

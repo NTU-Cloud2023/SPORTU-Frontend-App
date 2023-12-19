@@ -11,14 +11,14 @@ type HeaderProps = {
 };
 
 const Header = (props: HeaderProps) => {
-    const { alerts } = useContext(GlobDataContext);
+    const { hasNewMessage } = useContext(GlobDataContext);
 
     return (
         <div className="header">
             <div className="header-menu-bar">
                 <MenuBar onClick={props.handleShowMenu} />
             </div>
-            <div className={`header-bell ${alerts.length > 0 ? 'ringing' : ''}`}>
+            <div className={`header-bell ${hasNewMessage ? 'ringing' : ''}`}>
                 <div className="dot"></div>
                 <div className="bell-content">
                     <Bell onClick={props.handleShowNotifications} />
