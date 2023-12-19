@@ -4,6 +4,8 @@
     background-color: $dark;
 
     > .wrapper {
+        @extend %wrapper;
+
         padding: 30px 30px 1px;
 
         .field-img-container {
