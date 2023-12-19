@@ -1,5 +1,9 @@
 @import "../../variables";
 
 .map-body {
-    // margin-top: $header-height;
+    &::before {
+        display: block;
+        content: "";
+        height: $header-height;
+    }
 }

@@ -127,11 +127,6 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                     value={selectedTime}
                     setValue={setSelectedTime}
                 />
-                {/* <InputBar
-                    inputText={type}
-                    setInputText={setType as Dispatch<string>}
-                    placeholder={textMap.field_placeholder}
-                /> */}
                 <SelectableInputBar
                     text={selectedField ? selectedField.name : textMap.field_placeholder}
                     onClick={() => setOpenFieldListM(true)}
@@ -149,14 +144,11 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                             <div className="buttons-container">
                                 <PillButton
                                     text={textMap.prev_page}
-                                    onClick={() => setOpenFieldListM(false)}
+                                    onClick={() => {
+                                        setOpenSort(false);
+                                        setOpenFieldListM(false);
+                                    }}
                                 />
-                                {/* <PillButton
-                                    text={textMap.map_preview}
-                                    type="map"
-                                    onClick={() => {}}
-                                    style={{margin: '0 1rem 0 auto'}}
-                                /> */}
                                 <PillButton
                                     text={textMap.sorted_by}
                                     type="control"
