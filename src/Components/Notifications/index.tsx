@@ -10,7 +10,7 @@ type NotificationsProps = {
 
 const Notifications = (props: NotificationsProps) => {
     const {
-        alerts,
+        hasNewMessage,
         notifications,
         readNotification
     } = useContext(GlobDataContext);
@@ -27,7 +27,7 @@ const Notifications = (props: NotificationsProps) => {
         <div className="notifications">
             <div className="notifications-cancel">
                 {
-                    alerts.length > 0 ? (
+                    hasNewMessage ? (
                         <div className="d-block mr-2">
                             <PillButton
                                 text="全部已讀"
