@@ -37,6 +37,7 @@ const BookBody = () => {
         fetchSports,
         fetchingSports
     } = useContext(GlobDataContext);
+
     const book = async () => {
         if (fetching) return;
         setFetching(true);
@@ -83,7 +84,7 @@ ${cks.sport ? '' : '● 請選取運動類別\n'}${cks.date ? '' : '● 請選�
                     }
                 });
             }).catch((e) => {
-                console.log(e);
+                alert('你已經預約過該場次');
             }).finally(() => setFetching(false));
 
             // const iter = selectedField?.eachtime;
