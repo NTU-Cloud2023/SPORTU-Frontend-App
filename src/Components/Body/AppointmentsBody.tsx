@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AppointmentListItem from '../AppointmentListItem';
 import Gap from '../Gap';
 import LeftSubTitle from '../Title/LeftSubTitle';
