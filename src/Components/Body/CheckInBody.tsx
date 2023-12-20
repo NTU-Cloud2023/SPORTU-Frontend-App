@@ -33,31 +33,26 @@ const CheckInBody = () => {
     const [fetching, setFetching] = useState(false);
     const [bookFetching, setBookFetching] = useState(false);
     const [checkInCases, setCheckInCases] = useState<CheckInCase[]>([]);
-    const checkInCasesStr = useMemo<string[]>(() => {
-        const arr = checkInCases.map((c) => {
-            return c.TimestampUserID;
-        });
-        return arr;
-    }, [checkInCases]);
     const [selectedVal, setSelectedVal] = useState('');
 
     const mapFieldDetails = (fieldId: number) => {
         return fields.find((f) => f.id === fieldId);
     };
-    const mapApt = (id: string) => {
-        return updatedAppointments.find((apt) => apt.TimestampUserID === id);
+    const mapApt = (TimestampUserID: string, CourtID: string) => {
+        return updatedAppointments.find((apt) => {
+            return apt.TimestampUserID === TimestampUserID
+                        && apt.CourtID === CourtID;
+        });
     };
     const selectedCourt = useMemo(() => {
-        console.log(selectedVal);
         if (selectedVal.length === 0) return undefined;
         const courtId = +selectedVal.split('__')[1];
         return mapFieldDetails(courtId);
     }, [selectedVal]);
     const selectedApt = useMemo(() => {
-        console.log(selectedVal);
         if (selectedVal.length === 0) return undefined;
-        const id = selectedVal.split('__')[0];
-        return mapApt(id);
+        const ids = selectedVal.split('__');
+        return mapApt(ids[0], ids[1]);
     }, [selectedVal]);
     const validHistory = useMemo<SelectOption[]>(() => {
         const arr: SelectOption[] = [];
@@ -71,7 +66,7 @@ const CheckInBody = () => {
             }
         });
         return arr;
-    }, [updatedAppointments, checkInCasesStr]);
+    }, [updatedAppointments, checkInCases]);
 
     const fetchAppointments = () => {
         if (fetching === true) return;
@@ -82,6 +77,8 @@ const CheckInBody = () => {
             url: `https://admin.chillmonkey.tw/v1/users/${user.data?.id}/history`
         }).then((res) => {
             setAppointments(res.data.data);
+        }).catch(() => {
+            setAppointments([]);
         }).finally(() => {
             setFetching(false);
         });
@@ -112,14 +109,18 @@ const CheckInBody = () => {
 
     useEffect(() => {
         console.log('appointments updated');
-        const current = new Date().getTime() - 1800000;
+        const current = new Date().getTime() - 3600000;
         const updated: UpdatedAppointment[] = [];
         console.log(appointments);
         appointments.forEach((ap) => {
             const f = mapFieldDetails(+ap.CourtID);
             if (f !== undefined && ap.Status !== 'Failed') {
                 let status: AppointmentStatus = 'success';
-                if (checkInCasesStr.includes(ap.TimestampUserID)) status = 'finished';
+                const match = checkInCases.find((ck) => (
+                    ap.TimestampUserID === ck.TimestampUserID
+                        && ap.CourtID === ck.CourtID
+                ));
+                if (match) status = 'finished';
                 else if (+ap.Timestamp * 1000 < current) status = 'undone';
                 updated.push({
                     ...ap,
@@ -131,7 +132,7 @@ const CheckInBody = () => {
         });
         setUpdatedAppointments(updated);
         console.log(updated);
-    }, [appointments, fields, checkInCasesStr]);
+    }, [appointments, fields, checkInCases]);
 
     return (
         <div className="check-in-body">
@@ -196,7 +197,10 @@ const CheckInBody = () => {
                                     text="立即報到"
                                     onClick={() => {
                                         setBookFetching(true);
-                                        addCheckInCase(selectedApt?.TimestampUserID).finally(() => {
+                                        addCheckInCase(
+                                            selectedApt?.TimestampUserID,
+                                            selectedApt.CourtID
+                                        ).finally(() => {
                                             setBookFetching(false);
                                             getCheckInCases().then((res) => setCheckInCases(res));
                                             alert('報到成功');
