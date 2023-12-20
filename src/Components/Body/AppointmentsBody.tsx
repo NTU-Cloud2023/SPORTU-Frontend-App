@@ -29,11 +29,6 @@ const AppointmentsBody = () => {
     const [updatedAppointments, setUpdatedAppointments] = useState<UpdatedAppointment[]>([]);
     const [fetching, setFetching] = useState(false);
     const [checkInCases, setCheckInCases] = useState<CheckInCase[]>([]);
-    const checkInCasesStr = useMemo<string[]>(() => {
-        return checkInCases.map((c) => {
-            return c.TimestampUserID;
-        });
-    }, [checkInCases]);
 
     const fetchAppointments = () => {
         if (fetching === true) return;
@@ -44,6 +39,8 @@ const AppointmentsBody = () => {
             url: `https://admin.chillmonkey.tw/v1/users/${user.data?.id}/history`
         }).then((res) => {
             setAppointments(res.data.data);
+        }).catch(() => {
+            setAppointments([]);
         }).finally(() => {
             setFetching(false);
         });
@@ -55,14 +52,18 @@ const AppointmentsBody = () => {
 
     useEffect(() => {
         console.log('appointments updated');
-        const current = new Date().getTime() - 1800000;
+        const current = new Date().getTime() - 3600000;
         const updated: UpdatedAppointment[] = [];
         console.log(appointments);
         appointments.forEach((ap) => {
             const f = mapFieldDetails(+ap.CourtID);
             if (f !== undefined && ap.Status !== 'Failed') {
                 let status: AppointmentStatus = 'success';
-                if (checkInCasesStr.includes(ap.TimestampUserID)) status = 'finished';
+                const match = checkInCases.find((ck) => (
+                    ap.TimestampUserID === ck.TimestampUserID
+                        && ap.CourtID === ck.CourtID
+                ));
+                if (match) status = 'finished';
                 else if (+ap.Timestamp * 1000 < current) status = 'undone';
                 updated.push({
                     ...ap,
@@ -74,7 +75,7 @@ const AppointmentsBody = () => {
         });
         setUpdatedAppointments(updated);
         console.log(updated);
-    }, [appointments, fields, checkInCasesStr]);
+    }, [appointments, fields, checkInCases]);
 
     useEffect(() => {
         console.log('user check');

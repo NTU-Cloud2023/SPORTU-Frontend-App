@@ -7,6 +7,7 @@ import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 
 export interface CheckInCase {
     TimestampUserID: string,
+    CourtID: string,
     id: string
 }
 
@@ -42,8 +43,14 @@ export const getCheckInCases = () => (new Promise<CheckInCase[]>((res) => {
         });
 }));
 
-export const addCheckInCase = (TimestampUserID: string) => (new Promise<void>((res) => {
-    addDoc(colRef, { TimestampUserID }).then(() => {
+export const addCheckInCase = (
+    TimestampUserID: string,
+    CourtID: string
+) => (new Promise<void>((res) => {
+    addDoc(colRef, {
+        TimestampUserID,
+        CourtID
+    }).then(() => {
         setTimeout(() => {
             res();
         }, (Math.random() / 2 + 0.5) * 1500);
