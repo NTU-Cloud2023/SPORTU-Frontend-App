@@ -26,6 +26,11 @@ module.exports = {
             emoji: '🌱',
             value: 'init'
         },
+        update: {
+            description: 'Feature updates',
+            emoji: '♻️',
+            value: 'upt'
+        },
         tidy: {
             description: 'Code organization',
             emoji: '🧹',
