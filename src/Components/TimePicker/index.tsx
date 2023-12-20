@@ -2,7 +2,7 @@ import { DateTimePicker } from '@progress/kendo-react-dateinputs';
 import '@progress/kendo-theme-default/dist/default-main-dark.scss';
 import './timePicker.scss';
 import { useEffect } from 'react';
-import { getNextHourTimestamp } from '../../utils';
+import { getPrevHourTimestamp } from '../../utils';
 
 /***
  * KendoReact Documentation
@@ -17,7 +17,7 @@ export interface TimePickerProps {
 const TimePicker = ({
     value, setValue
 }: TimePickerProps) => {
-    const defaultDate = new Date(getNextHourTimestamp());
+    const defaultDate = new Date(getPrevHourTimestamp());
 
     useEffect(() => {
         setValue(defaultDate);
