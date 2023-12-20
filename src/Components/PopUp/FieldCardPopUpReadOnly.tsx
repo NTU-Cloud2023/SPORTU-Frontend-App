@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { UpdatedFieldData } from '../../Contexts/GlobDataProvider';
 import FieldCard from '../FieldCard';
 import './popUp.scss';
-import { getNextHourTimestamp } from '../../utils';
+import { getPrevHourTimestamp } from '../../utils';
 
 
 export interface FieldCardPopUpReadOnlyProps {
@@ -26,7 +26,7 @@ const FieldCardPopUpReadOnly = ({
                             navigate('/book', {
                                 state: {
                                     field: field,
-                                    timestamp: (getNextHourTimestamp() / 1000).toString()
+                                    timestamp: (getPrevHourTimestamp() / 1000).toString()
                                 }
                             });
                         }}
