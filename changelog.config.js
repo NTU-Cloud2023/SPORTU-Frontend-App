@@ -3,7 +3,9 @@ module.exports = {
     format: '{type}{scope}: {emoji}{subject}',
     list: [
         'feat',
+        'update',
         'tidy',
+        'asset',
         'fix',
         'style',
         'docs',
@@ -33,8 +35,13 @@ module.exports = {
         },
         tidy: {
             description: 'Code organization',
-            emoji: '🧹',
+            emoji: '🫧',
             value: 'tidy'
+        },
+        asset: {
+            description: 'Asset addition',
+            emoji: '💵',
+            value: 'asset'
         },
         cfg: {
             description: 'Configuration changes',
